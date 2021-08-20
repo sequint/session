@@ -18,3 +18,22 @@ document.getElementById('restaurant-button').addEventListener('click', event => 
 
 })
 
+
+// Below are both function needed to prompt the user to get their location.
+// Wherever this lands on the site the functions should stay together.
+
+const showPosition = position => {
+  console.log(position.coords.latitude)
+  console.log(position.coords.longitude)
+} 
+
+document.getElementById('location-button').addEventListener('click', event => {
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition)
+  }
+  else {
+    console.log('Gelocation not supported. Please enable location services.')
+  }
+
+})
