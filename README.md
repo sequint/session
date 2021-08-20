@@ -9,7 +9,7 @@ The app allows surfers to log information on the type of wave they like to surf 
 ### API Recourses
 
 Two APIs are used to pull surf and food data:
-  - Magic Seaweed: https://www.worldweatheronline.com/developer/api/docs/marine-weather-api.aspx#intro
+  - World Weather Online: https://www.worldweatheronline.com/developer/api/docs/marine-weather-api.aspx#intro
     - Used to pull information about surf reports for each day.
-  - Yelp: https://documenu.com/docs
+  - Documenu: https://documenu.com/docs
     - Used to find local restaurants that match the users preferences.
