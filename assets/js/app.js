@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 
 // Template axios request for Surf Report.
-=======
->>>>>>> b01140b2062c03793c8355e06f2eceb11554e111
 document.getElementById('surf-button').addEventListener('click', event => {
 
   axios.get('http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=33.3853,-117.5939')
@@ -11,10 +8,7 @@ document.getElementById('surf-button').addEventListener('click', event => {
 
 })
 
-<<<<<<< HEAD
 // Template axios request for Restaurants.
-=======
->>>>>>> b01140b2062c03793c8355e06f2eceb11554e111
 document.getElementById('restaurant-button').addEventListener('click', event => {
 
   axios.get('https://api.documenu.com/v2/restaurants/zip_code/92130?cuisine=italian', {
@@ -26,8 +20,6 @@ document.getElementById('restaurant-button').addEventListener('click', event => 
     .catch(error => console.log(error))
 
 })
-
-<<<<<<< HEAD
 
 // Below are both function needed to prompt the user to get their location.
 // Wherever this lands on the site the functions should stay together.
@@ -46,5 +38,3 @@ document.getElementById('location-button').addEventListener('click', event => {
   }
 
 })
-=======
->>>>>>> b01140b2062c03793c8355e06f2eceb11554e111
