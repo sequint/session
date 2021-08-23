@@ -7,10 +7,15 @@
   font-weight: bold;
 }
 
+.favorite-button {
+  float: right;
+}
+
 .session-search-container {
   margin-top: 30px;
 }
 
-.search-area {
-  width: 500px;
+.no-history-message {
+  font-size: 40px;
+  font-weight: bold;
 }
