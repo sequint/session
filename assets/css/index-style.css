@@ -15,3 +15,31 @@
   position: absolute;
   margin: 930px 10px 40px 1700px;
 }
+
+.sign-up-button {
+  border: #03045E solid 3px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #03045E;
+  height: 40px;
+  width: 100px;
+}
+
+.sign-up-button:hover {
+  background-color: #03045E;
+  color: white;
+}
+
+.sign-in-button {
+  border: #03045E solid 3px;
+  border-radius: 10px;
+  background-color: #03045E;
+  color: white;
+  height: 40px;
+  width: 100px;
+}
+
+.sign-in-button:hover {
+  background-color: transparent;
+  color: #03045E;
+}
