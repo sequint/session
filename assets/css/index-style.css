@@ -9,3 +9,9 @@
 .navbar-custom {
   background-color: transparent;
 }
+
+.home-footer {
+  z-index: 1;
+  position: absolute;
+  margin: 930px 10px 40px 1700px;
+}
