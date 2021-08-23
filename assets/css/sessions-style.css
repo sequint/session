@@ -7,7 +7,7 @@
   font-weight: bold;
 }
 
-.favorite-button {
+.fav-hist-toggle {
   float: right;
   border: #03045E solid 3px;
   border-radius: 10px;
@@ -19,7 +19,7 @@
   margin-right: 50px;
 }
 
-.favorite-button:hover {
+.fav-hist-toggle:hover {
   background-color: transparent;
   color: #03045E;
 }
