@@ -21,8 +21,8 @@
     <img class="background-img"
       src="https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg" alt="wave">
 
-    <nav class="navbar navbar-light fixed-top navbar-custom">
-      <div class="container-fluid">
+    <nav class="navbar navbar-light p-0 fixed-top navbar-custom">
+      <div class="container-fluid p-0">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -53,21 +53,27 @@
       </div>
     </nav>
 
-    <section class="row session-page-title">
-      <div class="col-12">
-        <h1 class="text-center sessions-title">Sessions</h1>
+    <section class="ui three column grid session-page-title">
+      <div class="row">
+        <div class="column"></div>
+        <div class="column">
+          <h1 class="text-center sessions-title">Sessions</h1>
+        </div>
+        <div class="column">
+          <button class="favorite-button">Favorite Sessions</button>
+        </div>
       </div>
     </section>
 
     <section class="row session-search-container">
-      <div class="col-4"></div>
-      <div class="col-4">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
         <div class="input-group mb-3 text-center search-area">
           <input type="text" class="form-control" placeholder="Enter city or zip code">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
         </div>
       </div>
-      <div class="col-4"></div>
+      <div class="col-sm-4"></div>
     </section>
 
     <section class="row sessions-display" id="sessions-display"></section>

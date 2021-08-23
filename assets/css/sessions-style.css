@@ -7,12 +7,12 @@
   font-weight: bold;
 }
 
-.session-search-container {
-  margin-top: 30px;
+.favorite-button {
+  float: right;
 }
 
-.search-area {
-  width: 500px;
+.session-search-container {
+  margin-top: 30px;
 }
 
 .no-history-message {
