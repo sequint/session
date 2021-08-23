@@ -1,0 +1,27 @@
+.preferences-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.set-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.preferences-table {
+	display: flex;
+	height: 700px;
+	width: 200px;
+}
+
+.preferences-table-row {
+	height: max-content;
+	width: max-content;
+}
+
+.preferences-table-col {
+	height: max-content;
+	width: max-content;
+}
