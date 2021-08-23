@@ -9,6 +9,19 @@
 
 .favorite-button {
   float: right;
+  border: #03045E solid 3px;
+  border-radius: 10px;
+  background-color: #03045E;
+  color: white;
+  height: 40px;
+  width: 200px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+.favorite-button:hover {
+  background-color: transparent;
+  color: #03045E;
 }
 
 .session-search-container {
