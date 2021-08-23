@@ -14,3 +14,8 @@
 .search-area {
   width: 500px;
 }
+
+.no-history-message {
+  font-size: 40px;
+  font-weight: bold;
+}
