@@ -21,8 +21,15 @@ document.getElementById('restaurant-button').addEventListener('click', event => 
 
 })
 
+<<<<<<< HEAD
+
 // Below are both function needed to prompt the user to get their location.
 // Wherever this lands on the site the functions should stay together.
+
+=======
+// Below are both function needed to prompt the user to get their location.
+// Wherever this lands on the site the functions should stay together.
+>>>>>>> 64d9435dbddbd4bb643b9e0e389570b54acb96f7
 const showPosition = position => {
   console.log(position.coords.latitude)
   console.log(position.coords.longitude)
@@ -37,4 +44,8 @@ document.getElementById('location-button').addEventListener('click', event => {
     console.log('Gelocation not supported. Please enable location services.')
   }
 
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> 64d9435dbddbd4bb643b9e0e389570b54acb96f7
