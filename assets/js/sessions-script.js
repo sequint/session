@@ -10,6 +10,13 @@ let sessionsHistory = [
     waveHeight: '2',
     waterTemp: '72',
     restaurant: 'Burger Lounge'
+  },
+  {
+    date: '08-07-21',
+    location: 'Orange County',
+    waveHeight: '6',
+    waterTemp: '78',
+    restaurant: 'The Pita Joint'
   }
 ]
 
@@ -29,8 +36,9 @@ if (sessionsHistory.length === 0) {
 }
 else {
   sessionsHistory.forEach(session => {
-    document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment">
+    let sessionElement = document.createElement('div')
+    sessionElement.className = 'ui card'
+    sessionElement.innerHTML = `
         <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
@@ -66,8 +74,8 @@ else {
             <i class="big close icon dislike"></i>
           </div>
         </div>
-      </div>
       `
+    document.getElementById('history-session-cards').append(sessionElement)
   })
   
 }
@@ -90,7 +98,6 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     Favorite Sessions
     `
     
-    console.log(sessionsFavorites)
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
       document.getElementById('session-message').innerHTML = `
@@ -142,13 +149,48 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
       `
     }
     else {
-      document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment">
-        <p></p>
-      </div>
-      `
+      sessionsHistory.forEach(session => {
+        document.getElementById('session-message').innerHTML = `
+        <div class="ui very padded segment">
+          <div class="ui card">
+            <div class="content">
+              <div class="header">${session.date}</div>
+            </div>
+            <div class="content">
+              <h4 class="ui sub header">${session.location}</h4>
+              <div class="ui small feed">
+                <div class="event">
+                  <div class="content">
+                    <div class="summary">
+                      <p>Wave Height: ${session.waveHeight} ft.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event">
+                  <div class="content">
+                    <div class="summary">
+                      <p>Water Temp: ${session.waterTemp} degrees</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event">
+                  <div class="content">
+                    <div class="summary">
+                      <p>Restaurant: ${session.restaurant}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="extra content like-dislike-area">
+              <i class="big heart icon like"></i>
+              <i class="big close icon dislike"></i>
+            </div>
+          </div>
+        </div>
+        `
+      })
     }
-
     // Set toggle to false.
     toggle = false
   }
