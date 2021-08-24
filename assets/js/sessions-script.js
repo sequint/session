@@ -109,8 +109,10 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
 
 })
 
+// Variable to toggle sidebar visibility.
 let sideBarToggle = false
 
+// Toggle between sidebar visibily or not depending on toggle btn status.
 document.getElementById('sidebar-toggler').addEventListener('click', event => {
   event.preventDefault()
 

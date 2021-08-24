@@ -16,7 +16,7 @@
 
 <body>
 
-  <div class="container-fluid p-0">
+  <div class="container">
 
     <img class="background-img"
       src="https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg" alt="wave">
@@ -24,46 +24,46 @@
       <i class="big bars icon sidebar-toggler" id="sidebar-toggler"></i>
     </div>
     <div class="ui left demo vertical inverted sidebar labeled icon menu sidebar-custom" id="sidebar">
-      <a class="item">
+      <a class="item" href="index.html">
         <i class="home icon"></i>
         Home
       </a>
-      <a class="item">
-        <i class="block layout icon"></i>
+      <a class="item" href="sessions.html">
+        <i class="map marker alternate icon"></i>
         Sessions
       </a>
-      <a class="item">
-        <i class="smile icon"></i>
+      <a class="item" href="preferences.html">
+        <i class="thumbs up icon"></i>
         Preferences
       </a>
-      <a class="item">
-        <i class="smile icon"></i>
+      <a class="item" href="contant.html">
+        <i class="quote left icon"></i>
         Contact Us
       </a>
     </div>
 
-    <section class="ui three column grid session-page-title">
+    <section class="ui three column stackable grid container session-page-title">
       <div class="row">
-        <div class="column"></div>
-        <div class="column">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
           <h1 class="sessions-title">Sessions</h1>
         </div>
-        <div class="column">
+        <div class="three wide column">
           <button class="fav-hist-toggle" id="fav-hist-toggle">Favorite Sessions</button>
         </div>
       </div>
     </section>
 
-    <section class="ui three column grid session-search-container">
+    <section class="ui three column stackable grid container session-search-container">
       <div class="row">
-        <div class="column"></div>
-        <div class="column">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
           <div class="search-area">
             <input type="text" class="location-input" id="location-input" placeholder="Enter city or zip code">
             <button class="search-btn" type="button" id="search-btn">Search</button>
           </div>
         </div>
-        <div class="column"></div>
+        <div class="three wide column"></div>
       </div>
     </section>
 
