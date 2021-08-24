@@ -23,7 +23,7 @@ let sessionsHistory = [
 // If there is no history data on load, display no history message.
 if (sessionsHistory.length === 0) {
   document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
+      <div class="ui placeholder segment" id="history-session-cards">
         <div class="ui icon header">
           <i class="search icon"></i>
           Looks like you don't have any sessions recorded yet!
@@ -106,18 +106,18 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
-      document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
+      document.getElementById('history-session-cards').innerHTML = `
+
         <div class="ui icon header">
           <i class="search icon"></i>
           You don't have any favorites saved yet.
         </div>
-      </div>
+
       `
     }
     else {
       document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment">
+      <div class="ui very padded segment" id="history-session-cards">
         <p></p>
       </div>
       `
@@ -143,7 +143,7 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     // If there is no history data, load no history message.
     if (sessionsHistory.length === 0) {
       document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
+      <div class="ui very padded segment" id="history-session-cards">
         <div class="ui icon header">
           <i class="search icon"></i>
           Looks like you don't have any sessions recorded yet!
@@ -155,6 +155,7 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
       `
     }
     else {
+      document.getElementById('history-session-cards').innerHTML = ''
       sessionsHistory.forEach(session => {
         let sessionElement = document.createElement('div')
         sessionElement.className = 'ui card'
@@ -195,8 +196,8 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
           </div>
         </div>
       `
-      console.log(sessionElement)
-        // document.getElementById('history-session-cards').append(sessionElement)
+      
+      document.getElementById('history-session-cards').append(sessionElement)
       })
     }
     // Set toggle to false.
