@@ -114,14 +114,21 @@ let sideBarToggle = false
 document.getElementById('sidebar-toggler').addEventListener('click', event => {
   event.preventDefault()
 
+  let sideBarButton = document.getElementById('sidebar-toggler')
+
   if (!sideBarToggle) {
     document.getElementById('sidebar').classList.add('visible')
-    document.getElementById('sidebar-toggler').style.padding = '30px 0px 0px 100px'
+    sideBarButton.classList.remove('bars')
+    sideBarButton.classList.add('close')
+    sideBarButton.style.marginLeft = '78px'
+    sideBarButton.style.color = 'white'
     sideBarToggle = true
   }
   else {
     document.getElementById('sidebar').classList.remove('visible')
-    document.getElementById('sidebar-toggler').style.padding = '30px 0px 0px 20px'
+    sideBarButton.style.marginLeft = '20px'
+    sideBarButton.classList.remove('close')
+    sideBarButton.classList.add('bars')
     sideBarToggle = false
   }
   
