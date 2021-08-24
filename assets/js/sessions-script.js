@@ -4,6 +4,28 @@
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
 let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
 
+// If there is no history data on load, display no history message.
+if (sessionsHistory.length === 0) {
+  document.getElementById('session-message').innerHTML = `
+      <div class="ui placeholder segment">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          Looks like you don't have any sessions recorded yet!
+        </div>
+        <div class="inline">
+          <div class="ui button">Find a Session</div>
+        </div>
+      </div>
+      `
+}
+else {
+  document.getElementById('session-message').innerHTML = `
+      <div class="ui very padded segment">
+        <p></p>
+      </div>
+      `
+}
+
 // Variable to hold value of whether or not the favorite button has been clicked.
 let toggle = false
 
@@ -26,8 +48,19 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
       document.getElementById('session-message').innerHTML = `
-      <p class="no-data-message">You don't have any favorite sessions saved yet.</p>
-      <p class="no-data-message message-2">Click on the like button after a session to add it to favorites.</p>
+      <div class="ui placeholder segment">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          You don't have any favorites saved yet.
+        </div>
+      </div>
+      `
+    }
+    else {
+      document.getElementById('session-message').innerHTML = `
+      <div class="ui very padded segment">
+        <p></p>
+      </div>
       `
     }
 
@@ -51,8 +84,22 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     // If there is no history data, load no history message.
     if (sessionsHistory.length === 0) {
       document.getElementById('session-message').innerHTML = `
-      <p class="no-data-message">You don't have any sessions recorded yet.</p>
-      <p class="no-data-message message-2">Use our sessions finder above then get out there and surf!</p>
+      <div class="ui placeholder segment">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          Looks like you don't have any sessions recorded yet!
+        </div>
+        <div class="inline">
+          <div class="ui button">Find a Session</div>
+        </div>
+      </div>
+      `
+    }
+    else {
+      document.getElementById('session-message').innerHTML = `
+      <div class="ui very padded segment">
+        <p></p>
+      </div>
       `
     }
 
