@@ -61,8 +61,6 @@ document.getElementById("save-preferences").addEventListener('click', event => {
 	sessionsPreferences.price_range = price_range
 	sessionsPreferences.food_type = food_type
 
-	console.log(sessionsPreferences)
-
 	localStorage.setItem('sessionsPreferences', JSON.stringify(sessionsPreferences))
 
 	window.location.href = "./preferences.html"
