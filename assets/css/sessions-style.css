@@ -33,7 +33,15 @@
   text-align: center;
 }
 
+.sidebar-toggler {
+  z-index: 2;
+  position: absolute;
+  padding: 30px 0px 0px 20px;
+}
 
+.sidebar-toggler:hover {
+  cursor: pointer;
+}
 
 .sessions-content-container {
   margin-top: 50px;
