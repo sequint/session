@@ -20,6 +20,8 @@ let sessionsHistory = [
   }
 ]
 
+console.log(sessionsFavorites)
+
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
   if (sessionsHistory.length === 0) {
@@ -40,7 +42,6 @@ const displayHistory = () => {
     document.getElementById('sessions-main-display').innerHTML = ''
 
     sessionsHistory.forEach(session => {
-      console.log(session.location)
       let sessionElement = document.createElement('div')
       sessionElement.className = 'ui card'
       sessionElement.innerHTML = `
@@ -100,6 +101,74 @@ const displayHistory = () => {
   }
 }
 
+const displayFavorites = () => {
+  // If there is no favorites data, load no favorites message.
+  if (sessionsFavorites.length === 0) {
+    document.getElementById('sessions-main-display').innerHTML = `
+      <div class="no-data-message">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          You don't have any favorites saved yet.
+        </div>
+      </div>
+      `
+  }
+  else {
+    // Clear out the history display section.
+    document.getElementById('sessions-main-display').innerHTML = ''
+
+    sessionsFavorites.forEach(session => {
+      let sessionElement = document.createElement('div')
+      sessionElement.className = 'ui card'
+      sessionElement.innerHTML = `
+        <div class="ui card">
+          <div class="content">
+            <div class="header">${session.date}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">${session.location}</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${session.waveHeight} ft.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${session.waterTemp} degrees</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Restaurant: ${session.restaurant}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content vote-area">
+            <span class="left floated star vote favorite">
+              <i class="star icon"></i>
+              Favorite
+            </span>
+            <span class="right floated star vote delete">
+              <i class="close icon"></i>
+              Delete
+            </span>
+          </div>
+        </div>
+      `
+
+      document.getElementById('sessions-main-display').append(sessionElement)
+    })
+  }
+}
+
 document.addEventListener('click', event => {
 
   if (event.target.classList.contains('favorite')) {
@@ -114,11 +183,17 @@ document.addEventListener('click', event => {
       restaurant: sessionData.dataset.restaurant
     }
 
-    // Place new object in the front of the favorites array.
-    sessionsFavorites.unshift(newFavorite)
+    // Create a bool variable to find if the date clicked on is already stored in favorites.
+    let favAlreadyStored = sessionsFavorites.find(session => session.date === newFavorite.date)
     
+    // If the date is not already stored, store and set data.
+    if (!favAlreadyStored) {
+      // Place new object in the front of the favorites array.
+    sessionsFavorites.unshift(newFavorite)
     // Add updated favorites array to local storage using site favorites key.
     localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
+    }
+    
 
   }
 
@@ -145,24 +220,7 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     Favorite Sessions
     `
     
-    // If there is no favorites data, load no favorites message.
-    if (sessionsFavorites.length === 0) {
-      document.getElementById('sessions-main-display').innerHTML = `
-      <div class="no-data-message">
-        <div class="ui icon header">
-          <i class="search icon"></i>
-          You don't have any favorites saved yet.
-        </div>
-      </div>
-      `
-    }
-    else {
-      document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment" id="sessions-main-display">
-        <p></p>
-      </div>
-      `
-    }
+    displayFavorites()
 
     // Set toggle to true.
     toggle = true
