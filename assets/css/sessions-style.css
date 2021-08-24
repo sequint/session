@@ -29,9 +29,7 @@
 }
 
 .sessions-content-container {
-  margin-top: 200px;
-  height: 800px;
-  width: 1000px;
+  margin-top: 50px;
   border: solid white;
   border-radius: 10px;
   opacity: .8;
@@ -40,4 +38,7 @@
 .no-data-message {
   font-size: 40px;
   font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 50px 50px 50px;
 }

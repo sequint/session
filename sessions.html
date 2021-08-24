@@ -65,33 +65,37 @@
       </div>
     </section>
 
-    <section class="row session-search-container">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <div class="input-group mb-3 text-center search-area">
-          <input type="text" class="form-control" placeholder="Enter city or zip code">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+    <section class="ui three column grid session-search-container">
+      <div class="row">
+        <div class="column"></div>
+        <div class="column">
+          <div class="input-group mb-3 text-center search-area">
+            <input type="text" class="form-control" placeholder="Enter city or zip code">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+          </div>
         </div>
+        <div class="column"></div>
       </div>
-      <div class="col-sm-4"></div>
     </section>
 
-    <section class="row sessions-display" id="sessions-display"></section>
+    <section class="ui three column grid sessions-display" id="sessions-display"></section>
 
     <h4 class="ui horizontal divider header sessions-divider" id="sessions-divider">
       <i class="history icon"></i>
       History
     </h4>
 
-    <section class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-6 card sessions-content-container">
+    <section class="ui three column grid">
+      <div class="row">
+      <div class="three wide column"></div>
+      <div class="ten wide column card sessions-content-container">
         <div class="card-body text-center session-message" id="session-message">
          <p class="no-data-message">You don't have any sessions recorded yet.</p>
          <p class="no-data-message message-2">Use our sessions finder above then get out there and surf!</p> 
         </div>
       </div>
-      <div class="col-sm-2"></div>
+      <div class="three wide column"></div>
+    </div>
     </section>
 
   </div>
@@ -101,7 +105,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
     crossorigin="anonymous"></script>
-  <script src="./assets/js/app.js"></script>
   <script src="./assets/js/sessions-script.js"></script>
 </body>
 
