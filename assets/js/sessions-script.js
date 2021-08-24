@@ -2,36 +2,38 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
-// let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-let sessionsHistory = [
-  {
-    date: '08-23-21',
-    location: 'San Diego',
-    waveHeight: '2',
-    waterTemp: '72',
-    restaurant: 'Burger Lounge'
-  },
-  {
-    date: '08-07-21',
-    location: 'Orange County',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  }
-]
+let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
+// let sessionsHistory = [
+//   {
+//     date: '08-23-21',
+//     location: 'San Diego',
+//     waveHeight: '2',
+//     waterTemp: '72',
+//     restaurant: 'Burger Lounge'
+//   },
+//   {
+//     date: '08-07-21',
+//     location: 'Orange County',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   }
+// ]
 
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
   if (sessionsHistory.length === 0) {
     document.getElementById('sessions-main-display').innerHTML = `
-        <div class="ui icon header">
-          <i class="search icon"></i>
-          Looks like you don't have any sessions recorded yet!
-        </div>
-        <div class="inline">
-          <div class="ui button">Find a Session</div>
-        </div>
-      `
+    <div class="no-data-message">
+      <div class="ui icon header">
+        <i class="search icon"></i>
+        Looks like you don't have any sessions recorded yet!
+      </div>
+      <div class="inline">
+        <div class="ui button">Find a Session</div>
+      </div>
+    </div>
+    `
   }
   else {
     // Clear out the history display section.
@@ -111,12 +113,12 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
       document.getElementById('sessions-main-display').innerHTML = `
-
+      <div class="no-data-message">
         <div class="ui icon header">
           <i class="search icon"></i>
           You don't have any favorites saved yet.
         </div>
-
+      </div>
       `
     }
     else {
