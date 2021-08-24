@@ -7,7 +7,7 @@ let sessionsHistory = [
   {
     date: '08-23-21',
     location: 'San Diego',
-    waveHeight: '2',
+    waveHeight: 2,
     waterTemp: '72',
     restaurant: 'Burger Lounge'
   },
@@ -24,22 +24,35 @@ const displayHistory = () => {
   // If there is no history data on load, display no history message.
   if (sessionsHistory.length === 0) {
     document.getElementById('sessions-main-display').innerHTML = `
-        <div class="ui icon header">
-          <i class="search icon"></i>
-          Looks like you don't have any sessions recorded yet!
-        </div>
-        <div class="inline">
-          <div class="ui button">Find a Session</div>
-        </div>
-      `
+    <div class="no-data-message">
+      <div class="ui icon header">
+        <i class="search icon"></i>
+        Looks like you don't have any sessions recorded yet!
+      </div>
+      <div class="inline">
+        <div class="ui button">Find a Session</div>
+      </div>
+    </div>
+    `
   }
   else {
     // Clear out the history display section.
     document.getElementById('sessions-main-display').innerHTML = ''
+
     sessionsHistory.forEach(session => {
+      console.log(session.location)
       let sessionElement = document.createElement('div')
       sessionElement.className = 'ui card'
       sessionElement.innerHTML = `
+        <article
+          class="session-data"
+          data-date=${session.date}
+          data-location="${session.location}"
+          data-waveheight=${session.waveHeight}
+          data-watertemp=${session.waterTemp}
+          data-restaurant="${session.restaurant}">
+        </article>
+
         <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
@@ -87,6 +100,30 @@ const displayHistory = () => {
   }
 }
 
+document.addEventListener('click', event => {
+
+  if (event.target.classList.contains('favorite')) {
+    // Create a variable that stores the embeded data set from the parent node.
+    let sessionData = event.target.parentNode.parentNode.parentNode.children[0]
+
+    let newFavorite = {
+      date: sessionData.dataset.date,
+      location: sessionData.dataset.location,
+      waveHeight: sessionData.dataset.waveheight,
+      waterTemp: sessionData.dataset.watertemp,
+      restaurant: sessionData.dataset.restaurant
+    }
+
+    // Place new object in the front of the favorites array.
+    sessionsFavorites.unshift(newFavorite)
+    
+    // Add updated favorites array to local storage using site favorites key.
+    localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
+
+  }
+
+})
+
 // Call function to display the history of surf sessions.
 displayHistory()
 
@@ -111,12 +148,12 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
       document.getElementById('sessions-main-display').innerHTML = `
-
+      <div class="no-data-message">
         <div class="ui icon header">
           <i class="search icon"></i>
           You don't have any favorites saved yet.
         </div>
-
+      </div>
       `
     }
     else {
