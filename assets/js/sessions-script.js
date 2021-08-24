@@ -114,9 +114,11 @@ document.addEventListener('click', event => {
       restaurant: sessionData.dataset.restaurant
     }
 
-    console.log(newFavorite)
+    // Place new object in the front of the favorites array.
     sessionsFavorites.unshift(newFavorite)
-    console.log(sessionsFavorites)
+    
+    // Add updated favorites array to local storage using site favorites key.
+    localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
 
   }
 
