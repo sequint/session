@@ -2,7 +2,16 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
-let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
+// let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
+let sessionsHistory = [
+  {
+    date: '08-23-21',
+    location: 'San Diego',
+    waveHeight: '2',
+    waterTemp: '72',
+    restaurant: 'Burger Lounge'
+  }
+]
 
 // If there is no history data on load, display no history message.
 if (sessionsHistory.length === 0) {
@@ -19,11 +28,48 @@ if (sessionsHistory.length === 0) {
       `
 }
 else {
-  document.getElementById('session-message').innerHTML = `
+  sessionsHistory.forEach(session => {
+    document.getElementById('session-message').innerHTML = `
       <div class="ui very padded segment">
-        <p></p>
+        <div class="ui card">
+          <div class="content">
+            <div class="header">${session.date}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">${session.location}</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${session.waveHeight} ft.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${session.waterTemp} degrees</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Restaurant: ${session.restaurant}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content like-dislike-area">
+            <i class="big heart icon like"></i>
+            <i class="big close icon dislike"></i>
+          </div>
+        </div>
       </div>
       `
+  })
+  
 }
 
 // Variable to hold value of whether or not the favorite button has been clicked.

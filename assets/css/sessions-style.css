@@ -50,6 +50,7 @@ i.icon {
 .fav-hist-toggle:hover {
   background-color: transparent;
   color: #03045E;
+  cursor: pointer;
 }
 
 .session-search-container {
@@ -65,6 +66,23 @@ i.icon {
   border: solid white;
   border-radius: 10px;
   opacity: .8;
+}
+
+.like-dislike-area {
+  text-align: center;
+}
+
+.like {
+  padding-right: 50px;
+}
+
+.dislike {
+  padding-right: 0px;
+}
+
+.dislike:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .no-data-message {
