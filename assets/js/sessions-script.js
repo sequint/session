@@ -2,23 +2,23 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
-let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-// let sessionsHistory = [
-//   {
-//     date: '08-23-21',
-//     location: 'San Diego',
-//     waveHeight: '2',
-//     waterTemp: '72',
-//     restaurant: 'Burger Lounge'
-//   },
-//   {
-//     date: '08-07-21',
-//     location: 'Orange County',
-//     waveHeight: '6',
-//     waterTemp: '78',
-//     restaurant: 'The Pita Joint'
-//   }
-// ]
+// let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
+let sessionsHistory = [
+  {
+    date: '08-23-21',
+    location: 'San Diego',
+    waveHeight: 2,
+    waterTemp: '72',
+    restaurant: 'Burger Lounge'
+  },
+  {
+    date: '08-07-21',
+    location: 'Orange County',
+    waveHeight: '6',
+    waterTemp: '78',
+    restaurant: 'The Pita Joint'
+  }
+]
 
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
@@ -38,10 +38,21 @@ const displayHistory = () => {
   else {
     // Clear out the history display section.
     document.getElementById('sessions-main-display').innerHTML = ''
+
     sessionsHistory.forEach(session => {
+      console.log(session.location)
       let sessionElement = document.createElement('div')
       sessionElement.className = 'ui card'
       sessionElement.innerHTML = `
+        <article
+          class="session-data"
+          data-date=${session.date}
+          data-location="${session.location}"
+          data-waveheight=${session.waveHeight}
+          data-watertemp=${session.waterTemp}
+          data-restaurant="${session.restaurant}">
+        </article>
+
         <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
@@ -88,6 +99,28 @@ const displayHistory = () => {
     })
   }
 }
+
+document.addEventListener('click', event => {
+
+  if (event.target.classList.contains('favorite')) {
+    // Create a variable that stores the embeded data set from the parent node.
+    let sessionData = event.target.parentNode.parentNode.parentNode.children[0]
+
+    let newFavorite = {
+      date: sessionData.dataset.date,
+      location: sessionData.dataset.location,
+      waveHeight: sessionData.dataset.waveheight,
+      waterTemp: sessionData.dataset.watertemp,
+      restaurant: sessionData.dataset.restaurant
+    }
+
+    console.log(newFavorite)
+    sessionsFavorites.unshift(newFavorite)
+    console.log(sessionsFavorites)
+
+  }
+
+})
 
 // Call function to display the history of surf sessions.
 displayHistory()

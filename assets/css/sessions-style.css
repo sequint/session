@@ -113,3 +113,12 @@ i.icon {
   text-align: center;
 
 }
+
+.ui.card {
+  margin-top: 0px;
+}
+
+.session-data {
+  border-bottom: none;
+  height: 0px;
+}
