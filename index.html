@@ -11,76 +11,79 @@
   integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/index-style.css">
 </head>
+
 <body>
 
-  <div class="container-fluid p-0">
+  <div class="container">
     
     <img class="background-img" src="https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg" alt="wave">
 
-    <nav class="navbar navbar-light fixed-top navbar-custom">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Session</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./sessions.html">Sessions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./preferences.html">Preferences</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./contant.html">Contact Us</a>
-              </li>
-            </ul>
+    <div class="toggle-btn-container">
+      <i class="big bars icon sidebar-toggler" id="sidebar-toggler"></i>
+    </div>
+    <div class="ui left demo vertical inverted sidebar labeled icon menu sidebar-custom" id="sidebar">
+      <a class="item" href="index.html">
+        <i class="home icon"></i>
+        Home
+      </a>
+      <a class="item" href="sessions.html">
+        <i class="map marker alternate icon"></i>
+        Sessions
+      </a>
+      <a class="item" href="preferences.html">
+        <i class="thumbs up icon"></i>
+        Preferences
+      </a>
+      <a class="item" href="contant.html">
+        <i class="quote left icon"></i>
+        Contact Us
+      </a>
+    </div>
+
+    <section class="ui four column stackable grid">
+      <div class="row">
+        <div class="four wide column"></div>
+        <div class="three wide column"></div>
+        <div class="six wide column">
+          <div class="ui very padded segment">
+            <h1 class="index-title">About</h1>
+            <hr>
+            <p>
+              With Session, you'll be able to find a chill surf spot and find local restaurants for a bit to eat when that hunger
+              hits after your session.
+            </P>
+            <p>
+              You can find the beach with the waves you like to ride and the temperature you love to feel. You'll be able to save
+              your preferences for furture sessions too. After you're done surfing, you can find a local restaurant with any type of
+              cuisine you're in the mood for.
+            </p>
           </div>
         </div>
+        <div class="four wide column"></div>
       </div>
     </nav>
 
 
     <section class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-6 card content-container">
-        <div class="card-body">
-          About
-      <hr>
-      <p>
-          With Session, you'll be able to find a chill surf spot and find local restaurants for a bite to eat when that hunger hits after your session. 
-      </P>
-      <P>
-          You can find the beach with the waves you like to ride and the temperature you love to feel. You'll be able to save your preferences for furture sessions too. After you're done surfing, you can find a local restaurant with any type of cuisine you're in the mood for.
-          </P>
-        </div>
-      </div>
-      <div class="col-sm-2"></div>
     </section>
-
-    <footer class="home-footer">
-      <button class="sign-up-button">
-        Sign Up
-      </button>
-      <button class="sign-in-button ">
-        Sign In
-      </button>
-    </footer>
+    
+    <section class="ui four column stackable grid">
+      <div class="row">
+        <div class="four wide column"></div>
+        <div class="sixteen wide column surf-image">          
+          <img src="https://cdn.shopify.com/s/files/1/0301/4297/files/Noah_sunsetsnap_2767d891-d7a3-409c-b517-77e0dd7ad5aa_1200x1200.jpg?v=1589803907" alt="surfer">
+        </div>
+        <div class="sixteen wide column restaurant-image">          
+          <img src="https://images.squarespace-cdn.com/content/v1/58a1ba5503596e1e0cb09ac3/1583970373741-T0GP2ASKQZD959OYJLOB/pizza2.jpg" alt="pizza">
+        </div>
+        <div class="three wide column"></div>
+      </div>
+    </section>
 
   </div>  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/index-script.js"></script>
 </body>
 </html>

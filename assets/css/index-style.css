@@ -6,42 +6,34 @@
   opacity: 0.4;
 }
 
-.navbar-custom {
-  background-color: transparent;
-}
+/* Sidebar Style */
 
-.home-footer {
-  z-index: 1;
+.toggle-btn-container {
+  z-index: 2;
   position: absolute;
-  margin: 0px 10px 40px 1700px;
+  margin: 30px 0px 0px 20px;
 }
 
-.sign-up-button {
-  border: #03045E solid 3px;
-  border-radius: 10px;
-  background-color: transparent;
-  color: #03045E;
+.icon {
   height: 40px;
-  width: 100px;
+  width: 40px;
 }
 
-.sign-up-button:hover {
-  background-color: #03045E;
+.sidebar-toggler {
+  z-index: 2;
+  position: absolute;
   color: white;
-}
-
-.sign-in-button {
-  border: #03045E solid 3px;
+  background-color: #03045E;
+  padding-top: 6px;
   border-radius: 10px;
-  background-color: #03045E;
-  color: white;
-  height: 40px;
-  width: 100px;
 }
 
-.sign-in-button:hover {
-  background-color: transparent;
-  color: #03045E;
+.sidebar-toggler:hover {
+  cursor: pointer;
+}
+
+.ui.inverted.menu {
+  background-color: #03045E;
 }
 
 .content-container {
@@ -54,9 +46,8 @@
   opacity: .8;
 }
 
-.surf-image {
-  margin-top: 100px;
-  margin-left: 50px;
-  height: 200px;
-  width: 300px;
+/* End of sidebar style */
+
+.ui.segment:first-child {
+  margin-top: 300px;
 }
