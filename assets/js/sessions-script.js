@@ -10,6 +10,13 @@ let sessionsHistory = [
     waveHeight: '2',
     waterTemp: '72',
     restaurant: 'Burger Lounge'
+  },
+  {
+    date: '08-07-21',
+    location: 'Orange County',
+    waveHeight: '6',
+    waterTemp: '78',
+    restaurant: 'The Pita Joint'
   }
 ]
 
@@ -29,8 +36,9 @@ if (sessionsHistory.length === 0) {
 }
 else {
   sessionsHistory.forEach(session => {
-    document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment">
+    let sessionElement = document.createElement('div')
+    sessionElement.className = 'ui card'
+    sessionElement.innerHTML = `
         <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
@@ -66,8 +74,8 @@ else {
             <i class="big close icon dislike"></i>
           </div>
         </div>
-      </div>
       `
+    document.getElementById('history-session-cards').append(sessionElement)
   })
   
 }
