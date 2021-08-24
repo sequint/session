@@ -21,37 +21,22 @@
     <img class="background-img"
       src="https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg" alt="wave">
 
-    <nav class="navbar navbar-light p-0 fixed-top navbar-custom">
-      <div class="container-fluid p-0">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Session</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./sessions.html">Sessions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./preferences.html">Preferences</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./contant.html">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <i class="big bars icon sidebar-toggler" id="sidebar-toggler"></i>
+
+    <div class="ui left demo vertical inverted sidebar labeled icon menu" id="sidebar">
+      <a class="item">
+        <i class="home icon"></i>
+        Home
+      </a>
+      <a class="item">
+        <i class="block layout icon"></i>
+        Topics
+      </a>
+      <a class="item">
+        <i class="smile icon"></i>
+        Friends
+      </a>
+    </div>
 
     <section class="ui three column grid session-page-title">
       <div class="row">
@@ -88,11 +73,7 @@
     <section class="ui three column grid">
       <div class="row">
       <div class="three wide column"></div>
-      <div class="ten wide column session-message" id="session-message">
-        <div class="ui very padded segment">
-          <p></p>
-        </div>
-      </div>
+      <div class="ten wide column session-message" id="session-message"></div>
       <div class="three wide column"></div>
     </div>
     </section>

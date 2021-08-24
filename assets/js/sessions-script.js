@@ -108,3 +108,22 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
   }
 
 })
+
+let sideBarToggle = false
+
+document.getElementById('sidebar-toggler').addEventListener('click', event => {
+  event.preventDefault()
+
+  if (!sideBarToggle) {
+    document.getElementById('sidebar').classList.add('visible')
+    document.getElementById('sidebar-toggler').style.padding = '30px 0px 0px 100px'
+    sideBarToggle = true
+  }
+  else {
+    document.getElementById('sidebar').classList.remove('visible')
+    document.getElementById('sidebar-toggler').style.padding = '30px 0px 0px 20px'
+    sideBarToggle = false
+  }
+  
+
+})
