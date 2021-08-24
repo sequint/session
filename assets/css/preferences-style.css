@@ -1,4 +1,13 @@
-.preferences-footer {
+.preferences-page-title {
+	padding-top: 40px;
+}
+
+.preferences-title {
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.set-preferences-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -12,8 +21,8 @@
 
 .preferences-table {
 	display: flex;
-	height: 700px;
-	width: 200px;
+	height: 1000px;
+	width: 500px;
 }
 
 .preferences-table-row {
@@ -24,4 +33,13 @@
 .preferences-table-col {
 	height: max-content;
 	width: max-content;
+}
+
+.preferences-content-container {
+	margin-top: 100px;
+	height: 800px;
+	width: 1200px;
+	border: solid white;
+	border-radius: 10px;
+	opacity: .8;
 }
