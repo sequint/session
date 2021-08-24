@@ -69,9 +69,15 @@ else {
               </div>
             </div>
           </div>
-          <div class="extra content like-dislike-area">
-            <i class="big heart icon like"></i>
-            <i class="big close icon dislike"></i>
+          <div class="extra content vote-area">
+            <span class="left floated star vote favorite">
+              <i class="star icon"></i>
+              Favorite
+            </span>
+            <span class="right floated star vote delete">
+              <i class="close icon"></i>
+              Delete
+            </span>
           </div>
         </div>
       `
@@ -150,45 +156,47 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     }
     else {
       sessionsHistory.forEach(session => {
-        document.getElementById('session-message').innerHTML = `
-        <div class="ui very padded segment">
-          <div class="ui card">
-            <div class="content">
-              <div class="header">${session.date}</div>
-            </div>
-            <div class="content">
-              <h4 class="ui sub header">${session.location}</h4>
-              <div class="ui small feed">
-                <div class="event">
-                  <div class="content">
-                    <div class="summary">
-                      <p>Wave Height: ${session.waveHeight} ft.</p>
-                    </div>
+        let sessionElement = document.createElement('div')
+        sessionElement.className = 'ui card'
+        sessionElement.innerHTML = `
+        <div class="ui card">
+          <div class="content">
+            <div class="header">${session.date}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">${session.location}</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${session.waveHeight} ft.</p>
                   </div>
                 </div>
-                <div class="event">
-                  <div class="content">
-                    <div class="summary">
-                      <p>Water Temp: ${session.waterTemp} degrees</p>
-                    </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${session.waterTemp} degrees</p>
                   </div>
                 </div>
-                <div class="event">
-                  <div class="content">
-                    <div class="summary">
-                      <p>Restaurant: ${session.restaurant}</p>
-                    </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Restaurant: ${session.restaurant}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="extra content like-dislike-area">
-              <i class="big heart icon like"></i>
-              <i class="big close icon dislike"></i>
-            </div>
+          </div>
+          <div class="extra content like-dislike-area">
+            <i class="big heart icon like"></i>
+            <i class="big close icon dislike"></i>
           </div>
         </div>
-        `
+      `
+      console.log(sessionElement)
+        // document.getElementById('history-session-cards').append(sessionElement)
       })
     }
     // Set toggle to false.
