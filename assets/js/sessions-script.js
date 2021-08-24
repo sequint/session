@@ -20,10 +20,10 @@ let sessionsHistory = [
   }
 ]
 
-// If there is no history data on load, display no history message.
-if (sessionsHistory.length === 0) {
-  document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
+const displayHistory = () => {
+  // If there is no history data on load, display no history message.
+  if (sessionsHistory.length === 0) {
+    document.getElementById('sessions-main-display').innerHTML = `
         <div class="ui icon header">
           <i class="search icon"></i>
           Looks like you don't have any sessions recorded yet!
@@ -31,14 +31,15 @@ if (sessionsHistory.length === 0) {
         <div class="inline">
           <div class="ui button">Find a Session</div>
         </div>
-      </div>
       `
-}
-else {
-  sessionsHistory.forEach(session => {
-    let sessionElement = document.createElement('div')
-    sessionElement.className = 'ui card'
-    sessionElement.innerHTML = `
+  }
+  else {
+    // Clear out the history display section.
+    document.getElementById('sessions-main-display').innerHTML = ''
+    sessionsHistory.forEach(session => {
+      let sessionElement = document.createElement('div')
+      sessionElement.className = 'ui card'
+      sessionElement.innerHTML = `
         <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
@@ -81,10 +82,13 @@ else {
           </div>
         </div>
       `
-    document.getElementById('history-session-cards').append(sessionElement)
-  })
-  
+      document.getElementById('sessions-main-display').append(sessionElement)
+    })
+  }
 }
+
+// Call function to display the history of surf sessions.
+displayHistory()
 
 // Variable to hold value of whether or not the favorite button has been clicked.
 let toggle = false
@@ -106,18 +110,18 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     
     // If there is no favorites data, load no favorites message.
     if (sessionsFavorites.length === 0) {
-      document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
+      document.getElementById('sessions-main-display').innerHTML = `
+
         <div class="ui icon header">
           <i class="search icon"></i>
           You don't have any favorites saved yet.
         </div>
-      </div>
+
       `
     }
     else {
       document.getElementById('session-message').innerHTML = `
-      <div class="ui very padded segment">
+      <div class="ui very padded segment" id="sessions-main-display">
         <p></p>
       </div>
       `
@@ -138,67 +142,9 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     History
     `
 
-    console.log(sessionsHistory)
+    // Display a history of session in card form.
+    displayHistory()
 
-    // If there is no history data, load no history message.
-    if (sessionsHistory.length === 0) {
-      document.getElementById('session-message').innerHTML = `
-      <div class="ui placeholder segment">
-        <div class="ui icon header">
-          <i class="search icon"></i>
-          Looks like you don't have any sessions recorded yet!
-        </div>
-        <div class="inline">
-          <div class="ui button">Find a Session</div>
-        </div>
-      </div>
-      `
-    }
-    else {
-      sessionsHistory.forEach(session => {
-        let sessionElement = document.createElement('div')
-        sessionElement.className = 'ui card'
-        sessionElement.innerHTML = `
-        <div class="ui card">
-          <div class="content">
-            <div class="header">${session.date}</div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">${session.location}</h4>
-            <div class="ui small feed">
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Wave Height: ${session.waveHeight} ft.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Water Temp: ${session.waterTemp} degrees</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Restaurant: ${session.restaurant}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="extra content like-dislike-area">
-            <i class="big heart icon like"></i>
-            <i class="big close icon dislike"></i>
-          </div>
-        </div>
-      `
-      console.log(sessionElement)
-        // document.getElementById('history-session-cards').append(sessionElement)
-      })
-    }
     // Set toggle to false.
     toggle = false
   }
