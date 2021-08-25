@@ -1,35 +1,4 @@
 
-// Template axios request for Surf Report.
-axios.get('http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=33.3853,-117.5939')
-  .then(res => console.log(res.data))
-  .catch(error => console.log(error))
-
-// Template axios request for Restaurants.
-axios.get('https://api.documenu.com/v2/restaurants/search/geo?lat=${}&lon=${}&distance=1&fullmenu', {
-  headers: {
-    'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
-  }
-})
-  .then(res => console.log(res.data))
-  .catch(error => console.log(error))
-
-
-const showPosition = position => {
-  console.log(position.coords.latitude)
-  console.log(position.coords.longitude)
-}
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(showPosition)
-}
-else {
-  console.log('Gelocation not supported. Please enable location services.')
-}
-
-
-
-
-
 // restaurant search
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
 let restaurant_choice = JSON.parse(localStorage.getItem('restaurant_choice')) || []
