@@ -2,7 +2,7 @@
   z-index: 0;
   position: absolute;
   width: 100%;
-  height: 757px;
+  height: 1000px;
   opacity: 0.4;
 }
 
@@ -14,7 +14,7 @@
   margin: 30px 0px 0px 20px;
 }
 
-.icon {
+i.icon {
   height: 40px;
   width: 40px;
 }
@@ -36,18 +36,16 @@
   background-color: #03045E;
 }
 
-.content-container {
-  margin-top: 200px;
-  margin-left: 400px;
-  height: 250px;
-  width: 500px;
-  border: solid white;
-  border-radius: 10px;
-  opacity: .8;
-}
-
 /* End of sidebar style */
 
-.ui.segment:first-child {
-  margin-top: 300px;
+.row2 {
+  width: 300px;
+  height: 200px;
+}
+
+.about {
+  margin-top: 150px;
+  margin-left: 650px;
+  height: 300px;
+  width: 600px;
 }
