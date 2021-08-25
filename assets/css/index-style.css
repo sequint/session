@@ -49,8 +49,8 @@ i.icon {
 }
 
 .about {
-  margin-top: 150px;
-  margin-left: 650px;
+  margin-top: 250px;
+  margin-left: 640px;
   height: 300px;
   width: 600px;
 }
@@ -59,7 +59,7 @@ i.icon {
   z-index: 1;
   position: absolute;
   display: inline;
-  margin-top: 50px !important;
+  margin-top: 90px !important;
 }
 
 .pref-btn {
