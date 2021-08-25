@@ -297,48 +297,60 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 // Search Functionality
 
 
-const showPosition = position => {
-  let latitude = position.coords.latitude
-  let longitude = position.coords.longitude
-  const twentyMiles = .1
+const zipCodeConversion = zipCode => {
 
-  console.log(position.coords.latitude)
-  console.log(position.coords.longitude)
-  console.log(`Plus: ${longitude + twentyMiles}`)
-  console.log(`Minus: ${longitude - twentyMiles}`)
-  
+
+
+}
+
+const findWaves = (lat, long) => {
+  // Initialize var to hold 20 miles to long converter.
+  const twentyMiles = .1
+  const twoMiles = .02
+  const pointA = long - twentyMiles
+  const pointB = long + twentyMiles
+  console.log(`Lat: ${lat}, Long: ${long}`)
+  console.log(`${twentyMiles}, ${twoMiles}, ${pointA}, ${pointB}`)
+
+  // write conditional to set lat at coast line.  Do this by using long range, where curves change in california, set let to something different.
+
+  for (let point = pointA; point < pointB; point += twoMiles) {
+    axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(error => console.log(error))
+  }
+
 }
 
 document.getElementById('wave-near-me').addEventListener('click', event => {
 
   if (navigator.geolocation) {
-    console.log(navigator.geolocation)
+    console.log(navigator.geolocation.getCurrentPosition)
     navigator.geolocation.getCurrentPosition(
       position => {
         let latitude = position.coords.latitude
         let longitude = position.coords.longitude
-        const twentyMiles = .1
 
-        console.log(position.coords.latitude)
-        console.log(position.coords.longitude)
-        console.log(`Plus: ${longitude + twentyMiles}`)
-        console.log(`Minus: ${longitude - twentyMiles}`)
+        // Send coords to the find waves function.
+        findWaves(latitude, longitude)
       },
       err => {
         document.getElementById('search-area').innerHTML = `
-        <input type="text" class="location-input" id="location-input" placeholder="Enter city or zip code">
+        <h3>Please Enter a Zip Code</h3>
+        <input type="text" class="location-input" id="location-input" placeholder="Zip code">
         <button class="search-btn" type="button" id="search-btn">Search</button>
         `
       }
     )
   }
   else {
-    console.log('Nope!')
     document.getElementById('search-area').innerHTML = `
-    <input type="text" class="location-input" id="location-input" placeholder="Enter city or zip code">
+    <h3>Geolocation not available</h3>
+    <input type="text" class="location-input" id="location-input" placeholder="Zip code">
     <button class="search-btn" type="button" id="search-btn">Search</button>
     `
   }
-
 
 })
