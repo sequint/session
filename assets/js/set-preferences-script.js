@@ -1,4 +1,4 @@
-let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
+let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences'))
 
 document.getElementById("save-preferences").addEventListener('click', event => {
 	event.preventDefault()

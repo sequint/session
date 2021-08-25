@@ -1,4 +1,4 @@
-let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences'))
+let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
 
 // If there is no preferences setup, display msg
 if (sessionsPreferences.food_type == "none") {
