@@ -12,8 +12,22 @@ let sessionsHistory = [
     restaurant: 'Burger Lounge'
   },
   {
+    date: '07-03-21',
+    location: 'Hawaii',
+    waveHeight: '6',
+    waterTemp: '78',
+    restaurant: 'The Pita Joint'
+  },
+  {
     date: '08-07-21',
     location: 'Orange County',
+    waveHeight: '6',
+    waterTemp: '78',
+    restaurant: 'The Pita Joint'
+  },
+  {
+    date: '08-01-21',
+    location: 'Mexico',
     waveHeight: '6',
     waterTemp: '78',
     restaurant: 'The Pita Joint'
@@ -54,7 +68,6 @@ const displayHistory = () => {
           data-restaurant="${session.restaurant}">
         </article>
 
-        <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
           </div>
@@ -94,7 +107,6 @@ const displayHistory = () => {
               Delete
             </span>
           </div>
-        </div>
       `
       document.getElementById('sessions-main-display').append(sessionElement)
     })
@@ -121,7 +133,6 @@ const displayFavorites = () => {
       let sessionElement = document.createElement('div')
       sessionElement.className = 'ui card'
       sessionElement.innerHTML = `
-        <div class="ui card">
           <div class="content">
             <div class="header">${session.date}</div>
           </div>
@@ -161,7 +172,6 @@ const displayFavorites = () => {
               Delete
             </span>
           </div>
-        </div>
       `
 
       document.getElementById('sessions-main-display').append(sessionElement)
@@ -185,7 +195,7 @@ document.addEventListener('click', event => {
 
     // Create a bool variable to find if the date clicked on is already stored in favorites.
     let favAlreadyStored = sessionsFavorites.find(session => session.date === newFavorite.date)
-    
+
     // If the date is not already stored, store and set data.
     if (!favAlreadyStored) {
       // Place new object in the front of the favorites array.

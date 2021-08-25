@@ -80,6 +80,15 @@ i.icon {
   opacity: .8;
 }
 
+.sessions-main-display {
+  justify-content: center;
+}
+
+.ui.card {
+  margin-top: 0px;
+  margin-left: 20px;
+}
+
 .vote-area {
   padding-top: 15px;
 }
@@ -111,11 +120,6 @@ i.icon {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-
-}
-
-.ui.card {
-  margin-top: 0px;
 }
 
 .session-data {
