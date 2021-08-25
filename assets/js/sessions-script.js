@@ -1,8 +1,8 @@
 
 // Splash timer function.
-setTimeout(() => {
-  document.getElementById('splash').innerHTML = ''
-}, 3000)
+// setTimeout(() => {
+//   document.getElementById('splash').innerHTML = ''
+// }, 3000)
 
 
 // Create array for favorites and history from local storage.
@@ -295,3 +295,50 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Search Functionality
+
+
+const showPosition = position => {
+  let latitude = position.coords.latitude
+  let longitude = position.coords.longitude
+  const twentyMiles = .1
+
+  console.log(position.coords.latitude)
+  console.log(position.coords.longitude)
+  console.log(`Plus: ${longitude + twentyMiles}`)
+  console.log(`Minus: ${longitude - twentyMiles}`)
+  
+}
+
+document.getElementById('wave-near-me').addEventListener('click', event => {
+
+  if (navigator.geolocation) {
+    console.log(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let latitude = position.coords.latitude
+        let longitude = position.coords.longitude
+        const twentyMiles = .1
+
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        console.log(`Plus: ${longitude + twentyMiles}`)
+        console.log(`Minus: ${longitude - twentyMiles}`)
+      },
+      err => {
+        document.getElementById('search-area').innerHTML = `
+        <input type="text" class="location-input" id="location-input" placeholder="Enter city or zip code">
+        <button class="search-btn" type="button" id="search-btn">Search</button>
+        `
+      }
+    )
+  }
+  else {
+    console.log('Nope!')
+    document.getElementById('search-area').innerHTML = `
+    <input type="text" class="location-input" id="location-input" placeholder="Enter city or zip code">
+    <button class="search-btn" type="button" id="search-btn">Search</button>
+    `
+  }
+
+
+})
