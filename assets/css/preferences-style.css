@@ -1,27 +1,100 @@
-.preferences-footer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.toggle-btn-container {
+	z-index: 2;
+	position: absolute;
+	margin: 30px 0px 0px 20px;
 }
 
-.set-button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.icon {
+	height: 40px;
+	width: 40px;
 }
 
-.preferences-table {
-	display: flex;
-	height: 700px;
-	width: 200px;
+.sidebar-toggler {
+	z-index: 2;
+	position: absolute;
+	color: white;
+	background-color: #03045E;
+	padding-top: 6px;
+	border-radius: 10px;
 }
 
-.preferences-table-row {
-	height: max-content;
-	width: max-content;
+.sidebar-toggler:hover {
+	cursor: pointer;
 }
 
-.preferences-table-col {
-	height: max-content;
-	width: max-content;
+.ui.inverted.menu {
+	background-color: #03045E;
+}
+
+.session-page-title {
+	padding-top: 40px;
+}
+
+.sessions-title {
+	text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.fav-hist-toggle {
+	float: right;
+	border: #03045E solid 3px;
+	border-radius: 10px;
+	background-color: #03045E;
+	color: white;
+	height: 40px;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.fav-hist-toggle:hover {
+	background-color: transparent;
+	color: #03045E;
+	cursor: pointer;
+}
+
+.session-search-container {
+	margin-top: 30px;
+}
+
+.search-area {
+	text-align: center;
+}
+
+.sessions-content-container {
+	margin-top: 50px;
+	border: solid white;
+	border-radius: 10px;
+	opacity: .8;
+}
+
+.like-dislike-area {
+	text-align: center;
+}
+
+.like {
+	padding-right: 50px;
+}
+
+.dislike {
+	padding-right: 0px;
+}
+
+.dislike:hover {
+	color: black;
+	cursor: pointer;
+}
+
+.no-data-message {
+	font-size: 40px;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 50px 50px 50px 50px;
+}
+
+.user-input-container {
+	font-size: 900x;
+	font-weight: bold;
+	text-align: center;
 }
