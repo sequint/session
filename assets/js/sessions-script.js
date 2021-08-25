@@ -345,7 +345,7 @@ const findWaves = (lat, long) => {
             </div>
           </div>
           <div class="extra content vote-area">
-            <button class="positive ui button">Go!</button>
+            <button class="positive ui button go-btn">Go!</button>
           </div>
       `
       document.getElementById('sessions-display').append(sessionElement)

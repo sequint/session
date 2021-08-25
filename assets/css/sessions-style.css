@@ -74,6 +74,15 @@ i.icon {
   color: white;
 }
 
+.header {
+  text-align: center;
+}
+
+.go-btn {
+  width: 100px;
+  margin-left: 80px !important;
+}
+
 .fav-hist-toggle {
   float: right;
   border: #03045E solid 3px;
