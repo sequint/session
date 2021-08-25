@@ -46,13 +46,13 @@ document.getElementById("save-preferences").addEventListener('click', event => {
 	}
 
 	// Food Type
-
+	let food_type = document.getElementById("food-names").value
 
 	// Now assign to sessionsPreferences
 	sessionsPreferences.wave_height = wave_height
 	sessionsPreferences.water_temp = water_temp
 	sessionsPreferences.price_range = price_range
-	sessionsPreferences.food_type = "food_type"
+	sessionsPreferences.food_type = food_type
 
 	localStorage.setItem('sessionsPreferences', JSON.stringify(sessionsPreferences))
 
