@@ -1,4 +1,10 @@
 
+// Splash timer function.
+setTimeout(() => {
+  document.getElementById('splash').innerHTML = ''
+}, 3000)
+
+
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
@@ -269,7 +275,7 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
     document.getElementById('sidebar').classList.add('visible')
     sideBarButton.classList.remove('bars')
     sideBarButton.classList.add('close')
-    sideBarButton.style.marginLeft = '78px'
+    sideBarButton.style.marginLeft = '85px'
     sideBarButton.style.color = 'white'
     sideBarToggle = true
   }
