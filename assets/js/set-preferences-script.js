@@ -52,7 +52,7 @@ document.getElementById("save-preferences").addEventListener('click', event => {
 	sessionsPreferences.wave_height = wave_height
 	sessionsPreferences.water_temp = water_temp
 	sessionsPreferences.price_range = price_range
-	sessionsPreferences.food_type = food_type
+	sessionsPreferences.food_type = "food_type"
 
 	localStorage.setItem('sessionsPreferences', JSON.stringify(sessionsPreferences))
 
