@@ -1,8 +1,14 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
+
+// restaurant search
+let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
+let restaurant_choice = JSON.parse(localStorage.getItem('restaurant_choice')) || []
+let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "default" }
+
+
 // let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
 let sessionsHistory = [
   {
     date: '08-23-21',
@@ -178,7 +184,6 @@ const displayFavorites = () => {
 }
 
 document.addEventListener('click', event => {
-
   if (event.target.classList.contains('favorite')) {
     // Create a variable that stores the embeded data set from the parent node.
     let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
@@ -197,11 +202,11 @@ document.addEventListener('click', event => {
     // If the date is not already stored, store and set data.
     if (!favAlreadyStored) {
       // Place new object in the front of the favorites array.
-    sessionsFavorites.unshift(newFavorite)
-    // Add updated favorites array to local storage using site favorites key.
-    localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
+      sessionsFavorites.unshift(newFavorite)
+      // Add updated favorites array to local storage using site favorites key.
+      localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
     }
-    
+
 
   }
 
@@ -218,7 +223,7 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
 
   // If toggle is false, change to favorite information.
   if (!toggle) {
-    
+
     // Change button text.
     document.getElementById('fav-hist-toggle').textContent = 'History'
 
@@ -227,7 +232,7 @@ document.getElementById('fav-hist-toggle').addEventListener('click', event => {
     <i class="heart outline icon"></i>
     Favorite Sessions
     `
-    
+
     displayFavorites()
 
     // Set toggle to true.
@@ -278,7 +283,7 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
     sideBarButton.classList.add('bars')
     sideBarToggle = false
   }
-  
+
 
 })
 
@@ -350,7 +355,17 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
         </div>
       </div>
       <div class="extra content vote-area">
-        <button class="positive ui button go-btn">Go!</button>
+        <button class="positive ui button go-btn" href="#popup1">Go!</button>
+      </div>
+
+      <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>Here i am</h2>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+          </div>
+        </div>
       </div>
       `
   document.getElementById('sessions-display').append(sessionElement)
@@ -358,7 +373,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 }
 
 const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, tempPrefHigh) => {
-  
+
   let userCounty = ''
   console.log(lat + ' ' + long)
 
@@ -370,7 +385,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
     userCounty = county
   }
   console.log(userCounty)
-  
+
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
@@ -415,10 +430,10 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 }
 
 // User preferences global varaibles.
-  let waveHeightLow = 0
-  let waveHeightHigh = 0
-  let waterTempLow = 0
-  let waterTempHigh = 0
+let waveHeightLow = 0
+let waveHeightHigh = 0
+let waterTempLow = 0
+let waterTempHigh = 0
 
 // User preferences variables.
 const setUserPreferences = () => {
@@ -436,7 +451,7 @@ const setUserPreferences = () => {
     waveHeightLow = 6
     waveHeightHigh = 9
   }
-  else if (sessionsPreferences.wave_height === 'height_overhead'){
+  else if (sessionsPreferences.wave_height === 'height_overhead') {
     waveHeightLow = 9
     waveHeightHigh = 100
   }
@@ -454,7 +469,7 @@ const setUserPreferences = () => {
     waterTempLow = 64
     waterTempHigh = 74
   }
-  else if (sessionsPreferences.water_temp === 'tropical'){
+  else if (sessionsPreferences.water_temp === 'tropical') {
     waterTempLow = 75
     waterTempHigh = 500
   }
@@ -503,9 +518,9 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
 })
 
 document.addEventListener('click', event => {
-  if(event.target.classList.contains('find-by-county-select')) {
+  if (event.target.classList.contains('find-by-county-select')) {
     let countySelected = ''
-    
+
     if (document.getElementById('orangeCounty').checked) {
       countySelected = 'orangeCounty'
     }
@@ -516,3 +531,59 @@ document.addEventListener('click', event => {
     findWaves(0, 0, countySelected, waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
   }
 })
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+// go-btn
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('go-btn')) {
+
+    const latitude = event.target.parentNode.parentNode.children[0].dataset.lat
+    const longitude = event.target.parentNode.parentNode.children[0].dataset.long
+    const cuisine = sessionsPreferences["food_type"]
+
+    // // Default preferences for food type
+    if (cuisine === "default") {
+      axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${latitude}&lon=${longitude}&distance=5`, {
+        headers: {
+          'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+        }
+      })
+        .then(res => {
+          const restaurant_info = res.data.data
+          localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+        })
+        .catch(error => console.log(error))
+    }
+    // specific cuisine preferences
+    else {
+      axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${latitude}&lon=${longitude}&distance=5&cuisine=${cuisine}`, {
+        headers: {
+          'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+        }
+      })
+        .then(res => {
+          const restaurant_info = res.data.data
+          localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+        })
+        .catch(error => console.log(error))
+    }
+
+    // Display list of restaurants and let user choose one
+    displayRestaurants()
+  }
+})
+
+const displayRestaurants = () => {
+
+  console.log(restaurant_info)
+
+  // If there is no favorites data, load no favorites message.
+  if (restaurant_info.length === 0) {
+    //document.getElementById('restaurants-main-display').innerHTML = ``
+  }
+  else {
+    //document.getElementById('restaurants-main-display').innerHTML = ``
+  }
+}
