@@ -353,12 +353,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       .catch(error => console.log(error))
   }
 
-  console.log(restaurant_info)
-  console.log(lat)
-  console.log(long)
-
-
-
+  let num = Math.floor(Math.random() * restaurant_info.length);
 
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
@@ -389,11 +384,12 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
               </div>
             </div>
           </div>
-
+          <h4 class="ui sub header">Restaurant Recommendation</h4>
           <div class="event">
             <div class="content">
               <div class="summary">
-                <p>Restaurant Recommendation: ${restaurant_info[0].restaurant_name} ft.</p>
+                <p>name: ${restaurant_info[num].restaurant_name}</p>
+                <p>phone: ${restaurant_info[num].restaurant_phone}</p>
               </div>
             </div>
           </div>
