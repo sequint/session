@@ -1,4 +1,4 @@
-let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences'))
+let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
 
 document.getElementById("save-preferences").addEventListener('click', event => {
 	event.preventDefault()
@@ -48,6 +48,7 @@ document.getElementById("save-preferences").addEventListener('click', event => {
 	// Food Type
 	let food_type = document.getElementById("food-names").value
 
+	console.log(wave_height)
 	// Now assign to sessionsPreferences
 	sessionsPreferences.wave_height = wave_height
 	sessionsPreferences.water_temp = water_temp
