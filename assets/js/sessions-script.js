@@ -1,43 +1,43 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
+let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
 
 // restaurant search
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
 let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "default" }
 
 
-// let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-let sessionsHistory = [
-  {
-    date: '08-23-21',
-    location: 'San Diego',
-    waveHeight: 2,
-    waterTemp: '72',
-    restaurant: 'Burger Lounge'
-  },
-  {
-    date: '07-03-21',
-    location: 'Hawaii',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  },
-  {
-    date: '08-07-21',
-    location: 'Orange County',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  },
-  {
-    date: '08-01-21',
-    location: 'Mexico',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  }
-]
+// let sessionsHistory = [
+//   {
+//     date: '08-23-21',
+//     location: 'San Diego',
+//     waveHeight: 2,
+//     waterTemp: '72',
+//     restaurant: 'Burger Lounge'
+//   },
+//   {
+//     date: '07-03-21',
+//     location: 'Hawaii',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   },
+//   {
+//     date: '08-07-21',
+//     location: 'Orange County',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   },
+//   {
+//     date: '08-01-21',
+//     location: 'Mexico',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   }
+// ]
 
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
@@ -361,7 +361,10 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       <article
         class="beach-data"
         data-lat=${lat}
-        data-long=${long}>
+        data-long=${long}
+        data-waveHeight=${waveHeight}
+        data-waterTemp=${waterTemp}
+        data-restaurant=${restaurant_info[num].restaurant_name}>
       </article>
 
       <div class="content">
