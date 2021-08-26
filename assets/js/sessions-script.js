@@ -487,11 +487,10 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
         document.getElementById('search-area').innerHTML = `
         <h3>Please Select a County</h3>
         <div class="field">
-          <label>County</label>
-          <select class="ui fluid dropdown">
-            <option value="Orange">Orange County</option>
-            <option value="SD">San Diego</option>
-          </select>
+          <input type="radio" id="orangeCounty" value="orangeCounty">
+					<label for="orangeCounty">Orange County</label>
+          <input type="radio" id="sanDiegoCounty" value="sanDiegoCounty">
+					<label for="sanDiegoCounty">San Diego County</label>
         </div>
         <button class="find-by-county-select">Find</button>
         `
@@ -509,9 +508,15 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
 })
 
 document.addEventListener('click', event => {
-  if (event.target.classList.contains('find-by-county-select')) {
-    let countySelected = event.target.parentNode.children[1].children[1].children
-    console.log(countySelected)
+  if(event.target.classList.contains('find-by-county-select')) {
+    let countySelected = ''
+    
+    if (document.getElementById('orangeCounty').checked) {
+      countySelected = 'orangeCounty'
+    }
+    else if (document.getElementById('sanDiegoCounty').checked) {
+      countySelected = 'sanDiegoCounty'
+    }
 
     findWaves(0, 0, countySelected, waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
   }
