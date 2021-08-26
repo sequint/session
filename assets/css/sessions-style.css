@@ -8,17 +8,16 @@
 
 body {
   background: url('https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg') no-repeat center center fixed;
-  padding-bottom: 0px;
 }
 
-.invisible-box {
+/* .invisible-box {
   z-index: 0;
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: #ffffff;
   opacity: 0.6;
-}
+} */
 
 .title-divider {
   z-index: 0;
