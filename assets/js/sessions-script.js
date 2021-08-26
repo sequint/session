@@ -291,7 +291,7 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 
 
 // Function that finds a users city based on coords.
-const findCity = (long) => {
+const findCounty = (long) => {
   let counter = 1
   let countyObject = {}
 
@@ -312,72 +312,108 @@ const findCity = (long) => {
     }
   })
 
-  // Rreturn the county object based on the geolocation.
-  return countyObject
+  // Rreturn the county property of the object found based on the geolocation.
+  return countyObject.county
 
 }
 
-const findBeaches = (latitude, longitude) => {
+const displayBeachCard = (location, waveHeight, waterTemp) => {
+
+  let sessionElement = document.createElement('div')
+  sessionElement.className = 'ui card'
+  sessionElement.innerHTML = `
+          <div class="content">
+            <div class="header">${location}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">Wave Information</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${waveHeight} ft.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${waterTemp} degrees</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content vote-area">
+            <button class="positive ui button go-btn">Go!</button>
+          </div>
+      `
+  document.getElementById('sessions-display').append(sessionElement)
+
+}
+
+const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, tempPrefHigh) => {
+  
+  let userCounty = ''
+  console.log(lat + ' ' + long)
+
+  if (lat !== 0 && long !== 0) {
+    console.log('Correct')
+    userCounty = findCounty(long)
+  }
+  else {
+    userCounty = county
+  }
+  console.log(userCounty)
   
 
+  if (userCounty === 'sanDiegoCounty') {
+    beaches.sanDiegoCounty.forEach(beach => {
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+        .then(res => {
+          let location = beach.name
+          let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
+          let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
+          if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
+            displayBeachCard(location, waveHeight, waterTemp)
+          }
+          else {
+            console.log('No beaches found.')
+          }
+        })
+        .catch(error => console.log(error))
+    })
+  }
+  else if (userCounty === 'orangeCounty') {
+    beaches.orangeCounty.forEach(beach => {
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+        .then(res => {
+          let location = beach.name
+          let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
+          let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
-}
-
-const findWaves = (lat, long, wavePref, tempPref) => {
-  // Initialize var to hold 20 miles to long converter.
-  const twoMiles = 0.0225
-  const pointA = long - twoMiles
-  const pointB = long + twoMiles
-  // console.log(`Lat: ${lat}, Long: ${long}`)
-  // console.log(beaches)
-
-  console.log(findCity(long))
-
-  // for (let point = pointA; point < pointB; point += twoMiles) {
-  //   axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
-  //     .then(res => {
-  //       console.log(res.data)
-  //       let location = coordsToCity(lat, point)
-  //       let waveHeight = (res.data.data.weather[0].hourly[0].swellHeight_ft) * 2
-  //       let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
-
-  //       let sessionElement = document.createElement('div')
-  //       sessionElement.className = 'ui card'
-  //       sessionElement.innerHTML = `
-  //         <div class="content">
-  //           <div class="header">${location}</div>
-  //         </div>
-  //         <div class="content">
-  //           <h4 class="ui sub header">Wave Information</h4>
-  //           <div class="ui small feed">
-  //             <div class="event">
-  //               <div class="content">
-  //                 <div class="summary">
-  //                   <p>Wave Height: ${waveHeight} ft.</p>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //             <div class="event">
-  //               <div class="content">
-  //                 <div class="summary">
-  //                   <p>Water Temp: ${waterTemp} degrees</p>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //         <div class="extra content vote-area">
-  //           <button class="positive ui button go-btn">Go!</button>
-  //         </div>
-  //     `
-  //     document.getElementById('sessions-display').append(sessionElement)
-
-  //     })
-  //     .catch(error => console.log(error))
-  // }
+          if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
+            displayBeachCard(location, waveHeight, waterTemp)
+          }
+          else {
+            console.log('No beaches found.')
+          }
+        })
+        .catch(error => console.log(error))
+    })
+  }
+  else {
+    console.log('Not a valid county.')
+  }
 
 }
+
+// User preferences variables.
+let waveHeightLow = 1
+let waveHeightHigh = 4
+let waterTempLow = 60
+let waterTempHigh = 80
 
 document.getElementById('wave-near-me').addEventListener('click', event => {
 
@@ -389,13 +425,19 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
         let longitude = position.coords.longitude
 
         // Send coords to the find waves function.
-        findWaves(latitude, longitude)
+        findWaves(latitude, longitude, '', waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
       },
       err => {
         document.getElementById('search-area').innerHTML = `
-        <h3>Please Enter a Zip Code</h3>
-        <input type="text" class="location-input" id="location-input" placeholder="Zip code">
-        <button class="search-btn" type="button" id="search-btn">Search</button>
+        <h3>Please Select a County</h3>
+        <div class="field">
+          <label>County</label>
+          <select class="ui fluid dropdown">
+            <option value="Orange">Orange County</option>
+            <option value="SD">San Diego</option>
+          </select>
+        </div>
+        <button class="find-by-county-select">Find</button>
         `
       }
     )
@@ -408,4 +450,13 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
     `
   }
 
+})
+
+document.addEventListener('click', event => {
+  if(event.target.classList.contains('find-by-county-select')) {
+    let countySelected = event.target.parentNode.children[1].children[1].children
+    console.log(countySelected)
+
+    findWaves(0, 0, countySelected, waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
+  }
 })
