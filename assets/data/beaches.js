@@ -2,7 +2,17 @@
 // Citities run from San Diego to Santa Barbara.
 
 const beaches = {
-  'San Diego County': [
+  lowHighPoints: [
+    sanDiegoCounty: {
+      lowLong: -117.123107,
+      highLong: -117.569541
+    },
+    orangeCounty: {
+      lowLong: -117.569542,
+      highLong: -118.112597
+    }
+  ],
+  sanDiegoCounty: [
     {
       name: 'Blacks Beach',
       latitude: 32.8925464,
@@ -129,7 +139,7 @@ const beaches = {
       longitude: -117.2792042
     }
   ],
-  'Orange County': [
+  orangeCounty: [
     {
       name: 'Aliso Beach',
       latitude: 33.5100268,
