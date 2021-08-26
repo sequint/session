@@ -9,7 +9,6 @@ let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')
 
 
 // let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
 let sessionsHistory = [
   {
     date: '08-23-21',
@@ -421,10 +420,10 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 }
 
 // User preferences global varaibles.
-  let waveHeightLow = 0
-  let waveHeightHigh = 0
-  let waterTempLow = 0
-  let waterTempHigh = 0
+let waveHeightLow = 0
+let waveHeightHigh = 0
+let waterTempLow = 0
+let waterTempHigh = 0
 
 // User preferences variables.
 const setUserPreferences = () => {
@@ -442,7 +441,7 @@ const setUserPreferences = () => {
     waveHeightLow = 6
     waveHeightHigh = 9
   }
-  else if (sessionsPreferences.wave_height === 'height_overhead'){
+  else if (sessionsPreferences.wave_height === 'height_overhead') {
     waveHeightLow = 9
     waveHeightHigh = 100
   }
@@ -460,7 +459,7 @@ const setUserPreferences = () => {
     waterTempLow = 64
     waterTempHigh = 74
   }
-  else if (sessionsPreferences.water_temp === 'tropical'){
+  else if (sessionsPreferences.water_temp === 'tropical') {
     waterTempLow = 75
     waterTempHigh = 500
   }
@@ -529,8 +528,7 @@ document.addEventListener('click', event => {
     const longitude = sessionStorage.getItem('longitude')
     //const cuisine = sessionsPreferences.getItem('food_type')
 
-    console.log(latitude)
-    console.log(longitude)
+    console.log(event.target.parentNode.parentNode)
 
     axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${latitude}&lon=${longitude}&distance=1`, {
       headers: {
