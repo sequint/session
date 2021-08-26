@@ -3,11 +3,13 @@
 
 const beaches = {
   lowHighPoints: [
-    sanDiegoCounty: {
+    {
+      county: 'sanDiegoCounty',
       lowLong: -117.123107,
       highLong: -117.569541
     },
-    orangeCounty: {
+    {
+      county: 'orangeCounty',
       lowLong: -117.569542,
       highLong: -118.112597
     }
