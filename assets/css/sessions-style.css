@@ -18,7 +18,7 @@
 /* Sidebar Style */
 
 .toggle-btn-container {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   margin: 30px 0px 0px 20px;
 }
@@ -29,7 +29,7 @@ i.icon {
 }
 
 .sidebar-toggler {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   color: white;
   background-color: #03045E;
@@ -157,6 +157,12 @@ i.icon {
 }
 
 @media only screen and (max-width: 576px) {
+  .toggle-btn-container {
+    margin-left: 10px;
+  }
+  .sessions-title {
+    font-size: 60px;
+  }
   .ui.card {
     margin-left: 0px;
   }
