@@ -1,14 +1,18 @@
-/* .background-img {
+body {
+  height: 100%;
+}
+
+.background-img {
   z-index: 0;
   position: absolute;
   width: 100%;
-  height: 1020px;
+  height: 100%;
   opacity: 0.4;
-} */
-
-body {
-  background: url('https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg') no-repeat center center fixed;
 }
+
+/* body {
+  background: url('https://cdn.discordapp.com/attachments/878701472961949727/879429555348197417/wave_pic.jpg') no-repeat center center fixed;
+} */
 
 /* .invisible-box {
   z-index: 0;
