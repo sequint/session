@@ -7,38 +7,6 @@ let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
 let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "default" }
 
-
-// let sessionsHistory = [
-//   {
-//     date: '08-23-21',
-//     location: 'San Diego',
-//     waveHeight: 2,
-//     waterTemp: '72',
-//     restaurant: 'Burger Lounge'
-//   },
-//   {
-//     date: '07-03-21',
-//     location: 'Hawaii',
-//     waveHeight: '6',
-//     waterTemp: '78',
-//     restaurant: 'The Pita Joint'
-//   },
-//   {
-//     date: '08-07-21',
-//     location: 'Orange County',
-//     waveHeight: '6',
-//     waterTemp: '78',
-//     restaurant: 'The Pita Joint'
-//   },
-//   {
-//     date: '08-01-21',
-//     location: 'Mexico',
-//     waveHeight: '6',
-//     waterTemp: '78',
-//     restaurant: 'The Pita Joint'
-//   }
-// ]
-
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
   if (sessionsHistory.length === 0) {
@@ -362,9 +330,10 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
         class="beach-data"
         data-lat=${lat}
         data-long=${long}
+        data-location="${location}"
         data-waveHeight=${waveHeight}
         data-waterTemp=${waterTemp}
-        data-restaurant=${restaurant_info[num].restaurant_name}>
+        data-restaurant="${restaurant_info[num].restaurant_name}">
       </article>
 
       <div class="content">
@@ -576,6 +545,39 @@ document.addEventListener('click', event => {
 /////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 // go-btn
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('go-btn')) {
+    // empty search display
+    document.getElementById('sessions-display').innerHTML = ``
+
+    // save and display history
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    const date = mm + '-' + dd + '-' + yyyy;
+    const location = event.target.parentNode.parentNode.children[0].dataset.location
+    const waveHeight = event.target.parentNode.parentNode.children[0].dataset.waveheight
+    const waterTemp = event.target.parentNode.parentNode.children[0].dataset.watertemp
+    const restaurant = event.target.parentNode.parentNode.children[0].dataset.restaurant
+
+    let obj = {
+      date: date,
+      location: location,
+      waveHeight: waveHeight,
+      waterTemp: waterTemp,
+      restaurant: restaurant
+    }
+
+    console.log(obj)
+    sessionsHistory.push(obj)
+    displayHistory()
+  }
+})
+
+
+
 document.addEventListener('click', event => {
   if (event.target.classList.contains('find-by-county-select')) {
 
