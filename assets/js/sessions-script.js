@@ -316,36 +316,42 @@ const findCounty = (long) => {
 
 }
 
-const displayBeachCard = (location, waveHeight, waterTemp) => {
+const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
   sessionElement.innerHTML = `
-          <div class="content">
-            <div class="header">${location}</div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">Wave Information</h4>
-            <div class="ui small feed">
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Wave Height: ${waveHeight} ft.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Water Temp: ${waterTemp} degrees</p>
-                  </div>
-                </div>
+      <article
+        class="beach-data"
+        data-lat=${lat}
+        data-long=${session.location}>
+      </article>
+
+      <div class="content">
+        <div class="header">${location}</div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header">Wave Information</h4>
+        <div class="ui small feed">
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Wave Height: ${waveHeight} ft.</p>
               </div>
             </div>
           </div>
-          <div class="extra content vote-area">
-            <button class="positive ui button go-btn">Go!</button>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Water Temp: ${waterTemp} degrees</p>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="extra content vote-area">
+        <button class="positive ui button go-btn">Go!</button>
+      </div>
       `
   document.getElementById('sessions-display').append(sessionElement)
 
@@ -375,7 +381,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
           let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
           if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
-            displayBeachCard(location, waveHeight, waterTemp)
+            displayBeachCard(location, waveHeight, waterTemp, beach.latitude, beach.longitude)
           }
           else {
             console.log('No beaches found.')
