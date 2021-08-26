@@ -163,6 +163,10 @@ i.icon {
   .sessions-title {
     font-size: 60px;
   }
+  .fav-hist-toggle {
+    width: 40px;
+    margin-right: 115px;
+  }
   .ui.card {
     margin-left: 0px;
   }
