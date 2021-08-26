@@ -355,7 +355,17 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
         </div>
       </div>
       <div class="extra content vote-area">
-        <button class="positive ui button go-btn">Go!</button>
+        <button class="positive ui button go-btn" href="#popup1">Go!</button>
+      </div>
+
+      <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>Here i am</h2>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+          </div>
+        </div>
       </div>
       `
   document.getElementById('sessions-display').append(sessionElement)
@@ -508,9 +518,9 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
 })
 
 document.addEventListener('click', event => {
-  if(event.target.classList.contains('find-by-county-select')) {
+  if (event.target.classList.contains('find-by-county-select')) {
     let countySelected = ''
-    
+
     if (document.getElementById('orangeCounty').checked) {
       countySelected = 'orangeCounty'
     }
@@ -531,7 +541,7 @@ document.addEventListener('click', event => {
 
     const latitude = event.target.parentNode.parentNode.children[0].dataset.lat
     const longitude = event.target.parentNode.parentNode.children[0].dataset.long
-    const cuisine = sessionsPreferences.getItem("food_type")
+    const cuisine = sessionsPreferences["food_type"]
 
     // // Default preferences for food type
     if (cuisine === "default") {
@@ -568,31 +578,12 @@ document.addEventListener('click', event => {
 const displayRestaurants = () => {
 
   console.log(restaurant_info)
+
   // If there is no favorites data, load no favorites message.
   if (restaurant_info.length === 0) {
-    document.getElementById('restaurants-main-display').innerHTML = `
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Here i am</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            Thank to pop me out of that button, but now i'm done so you can close this window.
-          </div>
-        </div>
-      </div>
-      `
+    //document.getElementById('restaurants-main-display').innerHTML = ``
   }
   else {
-    document.getElementById('restaurants-main-display').innerHTML = `
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Here i am</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            Thank to pop me out of that button, but now i'm done so you can close this window.
-          </div>
-        </div>
-      </div>
-    `
+    //document.getElementById('restaurants-main-display').innerHTML = ``
   }
 }
