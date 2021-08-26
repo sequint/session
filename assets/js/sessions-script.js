@@ -318,12 +318,15 @@ const findWaves = (lat, long) => {
     axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
       .then(res => {
         console.log(res.data)
+        let location = `${lat}, ${point}`
+        let waveHeight = (res.data.data.weather[0].hourly[0].swellHeight_ft) * 2
+        let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
         let sessionElement = document.createElement('div')
         sessionElement.className = 'ui card'
         sessionElement.innerHTML = `
           <div class="content">
-            <div class="header">Del Mar</div>
+            <div class="header">${location}</div>
           </div>
           <div class="content">
             <h4 class="ui sub header">Wave Information</h4>
@@ -331,14 +334,14 @@ const findWaves = (lat, long) => {
               <div class="event">
                 <div class="content">
                   <div class="summary">
-                    <p>Wave Height: 3 ft.</p>
+                    <p>Wave Height: ${waveHeight} ft.</p>
                   </div>
                 </div>
               </div>
               <div class="event">
                 <div class="content">
                   <div class="summary">
-                    <p>Water Temp: 75 degrees</p>
+                    <p>Water Temp: ${waterTemp} degrees</p>
                   </div>
                 </div>
               </div>
