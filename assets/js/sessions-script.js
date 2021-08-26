@@ -9,6 +9,7 @@ let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')
 
 
 // let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
+let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "none" }
 let sessionsHistory = [
   {
     date: '08-23-21',
@@ -39,8 +40,6 @@ let sessionsHistory = [
     restaurant: 'The Pita Joint'
   }
 ]
-
-console.log(sessionsFavorites)
 
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
@@ -323,36 +322,42 @@ const findCounty = (long) => {
 
 }
 
-const displayBeachCard = (location, waveHeight, waterTemp) => {
+const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
   sessionElement.innerHTML = `
-          <div class="content">
-            <div class="header">${location}</div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">Wave Information</h4>
-            <div class="ui small feed">
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Wave Height: ${waveHeight} ft.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Water Temp: ${waterTemp} degrees</p>
-                  </div>
-                </div>
+      <article
+        class="beach-data"
+        data-lat=${lat}
+        data-long=${session.location}>
+      </article>
+
+      <div class="content">
+        <div class="header">${location}</div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header">Wave Information</h4>
+        <div class="ui small feed">
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Wave Height: ${waveHeight} ft.</p>
               </div>
             </div>
           </div>
-          <div class="extra content vote-area">
-            <button class="positive ui button go-btn" id="go-btn">Go!</button>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Water Temp: ${waterTemp} degrees</p>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="extra content vote-area">
+        <button class="positive ui button go-btn">Go!</button>
+      </div>
       `
   document.getElementById('sessions-display').append(sessionElement)
 
@@ -382,7 +387,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
           let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
           if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
-            displayBeachCard(location, waveHeight, waterTemp)
+            displayBeachCard(location, waveHeight, waterTemp, beach.latitude, beach.longitude)
           }
           else {
             console.log('No beaches found.')
@@ -415,16 +420,62 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
 }
 
+// User preferences global varaibles.
+  let waveHeightLow = 0
+  let waveHeightHigh = 0
+  let waterTempLow = 0
+  let waterTempHigh = 0
+
 // User preferences variables.
-let waveHeightLow = 1
-let waveHeightHigh = 4
-let waterTempLow = 60
-let waterTempHigh = 80
+const setUserPreferences = () => {
+
+  // Set wave height range.
+  if (sessionsPreferences.wave_height === 'height_low') {
+    waveHeightLow = 0
+    waveHeightHigh = 3
+  }
+  else if (sessionsPreferences.wave_height === 'height_mid') {
+    waveHeightLow = 3
+    waveHeightHigh = 6
+  }
+  else if (sessionsPreferences.wave_height === 'height_high') {
+    waveHeightLow = 6
+    waveHeightHigh = 9
+  }
+  else if (sessionsPreferences.wave_height === 'height_overhead'){
+    waveHeightLow = 9
+    waveHeightHigh = 100
+  }
+
+  // Set water temp range.
+  if (sessionsPreferences.water_temp === 'polarBear') {
+    waterTempLow = 0
+    waterTempHigh = 52
+  }
+  else if (sessionsPreferences.water_temp === 'cold') {
+    waterTempLow = 53
+    waterTempHigh = 63
+  }
+  else if (sessionsPreferences.water_temp === 'warm') {
+    waterTempLow = 64
+    waterTempHigh = 74
+  }
+  else if (sessionsPreferences.water_temp === 'tropical'){
+    waterTempLow = 75
+    waterTempHigh = 500
+  }
+
+}
+
+
 
 document.getElementById('wave-near-me').addEventListener('click', event => {
 
   if (navigator.geolocation) {
-    console.log(navigator.geolocation.getCurrentPosition)
+
+    // Set user preferences to global variables.
+    setUserPreferences()
+
     navigator.geolocation.getCurrentPosition(
       position => {
         let latitude = position.coords.latitude
@@ -473,7 +524,7 @@ document.addEventListener('click', event => {
 // go-btn
 document.addEventListener('click', event => {
   if (event.target.classList.contains('go-btn')) {
-    
+
     const latitude = sessionStorage.getItem('latitude')
     const longitude = sessionStorage.getItem('longitude')
     //const cuisine = sessionsPreferences.getItem('food_type')
