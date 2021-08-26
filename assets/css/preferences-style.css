@@ -65,12 +65,7 @@ i.icon {
 	color: white;
 	height: 40px;
 	width: 250px;
-	margin-left: 650px;
-	margin-top: 50px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	-o-border-radius: 10px;
+	margin: 50px 0px 0px 460px;
 }
 
 .pref-btn:hover {

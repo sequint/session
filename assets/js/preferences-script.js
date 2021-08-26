@@ -8,6 +8,11 @@ if (sessionsPreferences.food_type == "none") {
           Looks like you don't have any preferences yet!
 					Set up your preferences first!
         </div>
+				<a href="set-preferences.html">
+          <button class="pref-btn hover" id="button1">
+            Set your preferences
+          </button>
+        </a>
       </div>
       `
 }
