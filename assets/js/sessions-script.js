@@ -4,7 +4,6 @@ let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) ||
 
 // restaurant search
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
-let restaurant_choice = JSON.parse(localStorage.getItem('restaurant_choice')) || []
 let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "default" }
 
 
@@ -186,7 +185,7 @@ const displayFavorites = () => {
 document.addEventListener('click', event => {
 
   if (event.target.classList.contains('favorite')) {
-  
+
     // Create a variable that stores the embeded data set from the parent node.
     let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
     console.log(sessionData)
@@ -325,6 +324,42 @@ const findCounty = (long) => {
 
 const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
+  const cuisine = sessionsPreferences["food_type"]
+
+  // // Default preferences for food type
+  if (cuisine === "default") {
+    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5`, {
+      headers: {
+        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+      }
+    })
+      .then(res => {
+        const restaurant_info = res.data.data
+        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+      })
+      .catch(error => console.log(error))
+  }
+  // specific cuisine preferences
+  else {
+    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5&cuisine=${cuisine}`, {
+      headers: {
+        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+      }
+    })
+      .then(res => {
+        const restaurant_info = res.data.data
+        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+      })
+      .catch(error => console.log(error))
+  }
+
+  console.log(restaurant_info)
+  console.log(lat)
+  console.log(long)
+
+
+
+
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
   sessionElement.innerHTML = `
@@ -354,6 +389,15 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
               </div>
             </div>
           </div>
+
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Restaurant Recommendation: ${restaurant_info[0].restaurant_name} ft.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -534,7 +578,7 @@ document.addEventListener('click', event => {
 /////////////////////////////////////////////////////////////////////////
 // go-btn
 document.addEventListener('click', event => {
-  if (event.target.classList.contains('go-btn')) {
+  if (event.target.classList.contains('find-by-county-select')) {
 
     const latitude = event.target.parentNode.parentNode.children[0].dataset.lat
     const longitude = event.target.parentNode.parentNode.children[0].dataset.long
@@ -566,25 +610,5 @@ document.addEventListener('click', event => {
         })
         .catch(error => console.log(error))
     }
-
-    // Display list of restaurants and let user choose one
-    displayRestaurants()
   }
 })
-
-const displayRestaurants = () => {
-
-  console.log(restaurant_info)
-
-  // If there is no favorites data, load no favorites message.
-  if (restaurant_info.length === 0) {
-    //document.getElementById('restaurants-main-display').innerHTML = ``
-  }
-  else {
-    //document.getElementById('restaurants-main-display').innerHTML = ``
-  }
-}
-
-function togglePopup() {
-  document.getElementById("popup-1").classList.toggle("active");
-}
