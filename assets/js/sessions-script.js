@@ -1,10 +1,3 @@
-
-// Splash timer function.
-// setTimeout(() => {
-//   document.getElementById('splash').innerHTML = ''
-// }, 3000)
-
-
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
@@ -297,65 +290,92 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 // Search Functionality
 
 
-const zipCodeConversion = zipCode => {
+// Function that finds a users city based on coords.
+const findCity = (long) => {
+  let counter = 1
+  let countyObject = {}
+
+  // Loop through the county array to compare high and low longitude points to users geolocation.
+  beaches.lowHighPoints.forEach(county => {
+    // Set conditional to tell if users longitude is within the county's longitude range.
+    if (long <= county.lowLong && long >= county.highLong) {
+      console.log('In first if.')
+      countyObject = county
+    }
+    // If the longitude points were not within any set county perameters, display error message.
+    else if (counter > beaches.lowHighPoints.length) {
+      return 'Must be in San Diego or Orange County'
+    }
+    // Iterate the counter to catch whether or not the user is within county perameters.
+    else {
+      counter++
+    }
+  })
+
+  // Rreturn the county object based on the geolocation.
+  return countyObject
+
+}
+
+const findBeaches = (latitude, longitude) => {
+  
 
 
 
 }
 
-const findWaves = (lat, long) => {
+const findWaves = (lat, long, wavePref, tempPref) => {
   // Initialize var to hold 20 miles to long converter.
-  const twentyMiles = .1
-  const twoMiles = .02
-  const pointA = long - twentyMiles
-  const pointB = long + twentyMiles
-  console.log(`Lat: ${lat}, Long: ${long}`)
-  console.log(`${twentyMiles}, ${twoMiles}, ${pointA}, ${pointB}`)
+  const twoMiles = 0.0225
+  const pointA = long - twoMiles
+  const pointB = long + twoMiles
+  // console.log(`Lat: ${lat}, Long: ${long}`)
+  // console.log(beaches)
 
-  // write conditional to set lat at coast line.  Do this by using long range, where curves change in california, set let to something different.
+  console.log(findCity(long))
 
-  for (let point = pointA; point < pointB; point += twoMiles) {
-    axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
-      .then(res => {
-        console.log(res.data)
-        let location = `${lat}, ${point}`
-        let waveHeight = (res.data.data.weather[0].hourly[0].swellHeight_ft) * 2
-        let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
+  // for (let point = pointA; point < pointB; point += twoMiles) {
+  //   axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       let location = coordsToCity(lat, point)
+  //       let waveHeight = (res.data.data.weather[0].hourly[0].swellHeight_ft) * 2
+  //       let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
-        let sessionElement = document.createElement('div')
-        sessionElement.className = 'ui card'
-        sessionElement.innerHTML = `
-          <div class="content">
-            <div class="header">${location}</div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">Wave Information</h4>
-            <div class="ui small feed">
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Wave Height: ${waveHeight} ft.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Water Temp: ${waterTemp} degrees</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="extra content vote-area">
-            <button class="positive ui button go-btn">Go!</button>
-          </div>
-      `
-      document.getElementById('sessions-display').append(sessionElement)
+  //       let sessionElement = document.createElement('div')
+  //       sessionElement.className = 'ui card'
+  //       sessionElement.innerHTML = `
+  //         <div class="content">
+  //           <div class="header">${location}</div>
+  //         </div>
+  //         <div class="content">
+  //           <h4 class="ui sub header">Wave Information</h4>
+  //           <div class="ui small feed">
+  //             <div class="event">
+  //               <div class="content">
+  //                 <div class="summary">
+  //                   <p>Wave Height: ${waveHeight} ft.</p>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //             <div class="event">
+  //               <div class="content">
+  //                 <div class="summary">
+  //                   <p>Water Temp: ${waterTemp} degrees</p>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div class="extra content vote-area">
+  //           <button class="positive ui button go-btn">Go!</button>
+  //         </div>
+  //     `
+  //     document.getElementById('sessions-display').append(sessionElement)
 
-      })
-      .catch(error => console.log(error))
-  }
+  //     })
+  //     .catch(error => console.log(error))
+  // }
 
 }
 
