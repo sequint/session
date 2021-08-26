@@ -98,11 +98,11 @@ const displayHistory = () => {
           <div class="extra content vote-area">
             <span class="left floated star vote favorite">
               <i class="star icon"></i>
-              Favorite
+              <span class="vote-text">Favorite</span>
             </span>
             <span class="right floated star vote delete">
               <i class="close icon"></i>
-              Delete
+              <span class="vote-text">Delete</span>
             </span>
           </div>
       `
@@ -163,11 +163,11 @@ const displayFavorites = () => {
           <div class="extra content vote-area">
             <span class="left floated star vote favorite">
               <i class="star icon"></i>
-              Favorite
+              <span class="vote-text">Favorite</span>
             </span>
             <span class="right floated star vote delete">
               <i class="close icon"></i>
-              Delete
+              <span class="vote-text">Delete</span>
             </span>
           </div>
       `

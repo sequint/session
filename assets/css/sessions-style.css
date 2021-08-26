@@ -155,3 +155,19 @@ i.icon {
   border-bottom: none;
   height: 0px;
 }
+
+@media only screen and (max-width: 576px) {
+  .ui.card {
+    margin-left: 0px;
+  }
+  .vote-area {
+    height: 50px;
+    padding: 0px 0px 0px 0px !important;
+  }
+  .vote-text {
+    display: none;
+  }
+  .star.icon {
+    padding-left: 25px;
+  }
+}
