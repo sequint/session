@@ -6,10 +6,10 @@
 	opacity: 0.4;
 }
 
-.set-pref-btn {
+/* .set-pref-btn {
 	z-index: 3;
 	position: absolute;
-}
+} */
 
 .toggle-btn-container {
 	z-index: 2;
@@ -58,18 +58,22 @@ i.icon {
 	font-weight: bold;
 }
 
-.fav-hist-toggle {
-	float: right;
+.pref-btn {
 	border: #03045E solid 3px;
 	border-radius: 10px;
 	background-color: #03045E;
 	color: white;
 	height: 40px;
-	width: 100%;
-	margin-top: 20px;
+	width: 250px;
+	margin-left: 650px;
+	margin-top: 50px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
 }
 
-.fav-hist-toggle:hover {
+.pref-btn:hover {
 	background-color: transparent;
 	color: #03045E;
 	cursor: pointer;
