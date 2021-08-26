@@ -1,10 +1,3 @@
-
-// Splash timer function.
-// setTimeout(() => {
-//   document.getElementById('splash').innerHTML = ''
-// }, 3000)
-
-
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
@@ -297,32 +290,130 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 // Search Functionality
 
 
-const zipCodeConversion = zipCode => {
+// Function that finds a users city based on coords.
+const findCounty = (long) => {
+  let counter = 1
+  let countyObject = {}
 
+  // Loop through the county array to compare high and low longitude points to users geolocation.
+  beaches.lowHighPoints.forEach(county => {
+    // Set conditional to tell if users longitude is within the county's longitude range.
+    if (long <= county.lowLong && long >= county.highLong) {
+      console.log('In first if.')
+      countyObject = county
+    }
+    // If the longitude points were not within any set county perameters, display error message.
+    else if (counter > beaches.lowHighPoints.length) {
+      return 'Must be in San Diego or Orange County'
+    }
+    // Iterate the counter to catch whether or not the user is within county perameters.
+    else {
+      counter++
+    }
+  })
 
+  // Rreturn the county property of the object found based on the geolocation.
+  return countyObject.county
 
 }
 
-const findWaves = (lat, long) => {
-  // Initialize var to hold 20 miles to long converter.
-  const twentyMiles = .1
-  const twoMiles = .02
-  const pointA = long - twentyMiles
-  const pointB = long + twentyMiles
-  console.log(`Lat: ${lat}, Long: ${long}`)
-  console.log(`${twentyMiles}, ${twoMiles}, ${pointA}, ${pointB}`)
+const displayBeachCard = (location, waveHeight, waterTemp) => {
 
-  // write conditional to set lat at coast line.  Do this by using long range, where curves change in california, set let to something different.
+  let sessionElement = document.createElement('div')
+  sessionElement.className = 'ui card'
+  sessionElement.innerHTML = `
+          <div class="content">
+            <div class="header">${location}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">Wave Information</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${waveHeight} ft.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${waterTemp} degrees</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content vote-area">
+            <button class="positive ui button go-btn">Go!</button>
+          </div>
+      `
+  document.getElementById('sessions-display').append(sessionElement)
 
-  for (let point = pointA; point < pointB; point += twoMiles) {
-    axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${lat},${point}`)
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(error => console.log(error))
+}
+
+const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, tempPrefHigh) => {
+  
+  let userCounty = ''
+  console.log(lat + ' ' + long)
+
+  if (lat !== 0 && long !== 0) {
+    console.log('Correct')
+    userCounty = findCounty(long)
+  }
+  else {
+    userCounty = county
+  }
+  console.log(userCounty)
+  
+
+  if (userCounty === 'sanDiegoCounty') {
+    beaches.sanDiegoCounty.forEach(beach => {
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+        .then(res => {
+          let location = beach.name
+          let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
+          let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
+
+          if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
+            displayBeachCard(location, waveHeight, waterTemp)
+          }
+          else {
+            console.log('No beaches found.')
+          }
+        })
+        .catch(error => console.log(error))
+    })
+  }
+  else if (userCounty === 'orangeCounty') {
+    beaches.orangeCounty.forEach(beach => {
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+        .then(res => {
+          let location = beach.name
+          let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
+          let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
+
+          if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
+            displayBeachCard(location, waveHeight, waterTemp)
+          }
+          else {
+            console.log('No beaches found.')
+          }
+        })
+        .catch(error => console.log(error))
+    })
+  }
+  else {
+    console.log('Not a valid county.')
   }
 
 }
+
+// User preferences variables.
+let waveHeightLow = 1
+let waveHeightHigh = 4
+let waterTempLow = 60
+let waterTempHigh = 80
 
 document.getElementById('wave-near-me').addEventListener('click', event => {
 
@@ -334,13 +425,19 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
         let longitude = position.coords.longitude
 
         // Send coords to the find waves function.
-        findWaves(latitude, longitude)
+        findWaves(latitude, longitude, '', waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
       },
       err => {
         document.getElementById('search-area').innerHTML = `
-        <h3>Please Enter a Zip Code</h3>
-        <input type="text" class="location-input" id="location-input" placeholder="Zip code">
-        <button class="search-btn" type="button" id="search-btn">Search</button>
+        <h3>Please Select a County</h3>
+        <div class="field">
+          <label>County</label>
+          <select class="ui fluid dropdown">
+            <option value="Orange">Orange County</option>
+            <option value="SD">San Diego</option>
+          </select>
+        </div>
+        <button class="find-by-county-select">Find</button>
         `
       }
     )
@@ -353,4 +450,13 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
     `
   }
 
+})
+
+document.addEventListener('click', event => {
+  if(event.target.classList.contains('find-by-county-select')) {
+    let countySelected = event.target.parentNode.children[1].children[1].children
+    console.log(countySelected)
+
+    findWaves(0, 0, countySelected, waveHeightLow, waveHeightHigh, waterTempLow, waterTempHigh)
+  }
 })
