@@ -1,13 +1,14 @@
 .container {
   margin-left: 0px !important;
   margin-right: 0px !important;
+  padding: 0px 0px 0px 0px !important;
 }
 
 .background-img {
   z-index: 0;
   position: absolute;
   width: 100%;
-  height: 1000px;
+  height: 1020px;
   opacity: 0.4;
 }
 
@@ -109,4 +110,19 @@ i.icon {
   background-color: transparent;
   color: #03045E;
   cursor: pointer;
+}
+
+.sessions-title {
+  z-index: 2;
+  position: absolute;
+  text-align: center;
+  font-size: 70px;
+  font-weight: bold;
+  color: white;
+}
+
+.row {
+  position: absolute !important;
+  text-align: center !important;
+  padding-top: 0px !important;
 }
