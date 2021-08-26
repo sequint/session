@@ -181,7 +181,7 @@ document.addEventListener('click', event => {
 
   if (event.target.classList.contains('favorite')) {
     // Create a variable that stores the embeded data set from the parent node.
-    let sessionData = event.target.parentNode.parentNode.parentNode.children[0]
+    let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
 
     let newFavorite = {
       date: sessionData.dataset.date,
@@ -481,7 +481,7 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
       err => {
         document.getElementById('search-area').innerHTML = `
         <h3>Please Select a County</h3>
-        <div class="field">
+        <div>
           <input type="radio" id="orangeCounty" value="orangeCounty">
 					<label for="orangeCounty">Orange County</label>
           <input type="radio" id="sanDiegoCounty" value="sanDiegoCounty">
