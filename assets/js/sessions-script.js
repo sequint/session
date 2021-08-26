@@ -1,44 +1,43 @@
 // Create array for favorites and history from local storage.
 // If no data yet exists, create and empty array.
 let sessionsFavorites = JSON.parse(localStorage.getItem('sessionsFavorites')) || []
+let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
 
 // restaurant search
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
-let restaurant_choice = JSON.parse(localStorage.getItem('restaurant_choice')) || []
 let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')) || { 'wave_height': "default", 'water_temp': "default", 'price_range': "default", 'food_type': "default" }
 
 
-// let sessionsHistory = JSON.parse(localStorage.getItem('sessionsHistory')) || []
-let sessionsHistory = [
-  {
-    date: '08-23-21',
-    location: 'San Diego',
-    waveHeight: 2,
-    waterTemp: '72',
-    restaurant: 'Burger Lounge'
-  },
-  {
-    date: '07-03-21',
-    location: 'Hawaii',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  },
-  {
-    date: '08-07-21',
-    location: 'Orange County',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  },
-  {
-    date: '08-01-21',
-    location: 'Mexico',
-    waveHeight: '6',
-    waterTemp: '78',
-    restaurant: 'The Pita Joint'
-  }
-]
+// let sessionsHistory = [
+//   {
+//     date: '08-23-21',
+//     location: 'San Diego',
+//     waveHeight: 2,
+//     waterTemp: '72',
+//     restaurant: 'Burger Lounge'
+//   },
+//   {
+//     date: '07-03-21',
+//     location: 'Hawaii',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   },
+//   {
+//     date: '08-07-21',
+//     location: 'Orange County',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   },
+//   {
+//     date: '08-01-21',
+//     location: 'Mexico',
+//     waveHeight: '6',
+//     waterTemp: '78',
+//     restaurant: 'The Pita Joint'
+//   }
+// ]
 
 const displayHistory = () => {
   // If there is no history data on load, display no history message.
@@ -186,7 +185,7 @@ const displayFavorites = () => {
 document.addEventListener('click', event => {
 
   if (event.target.classList.contains('favorite')) {
-  
+
     // Create a variable that stores the embeded data set from the parent node.
     let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
     console.log(sessionData)
@@ -325,13 +324,47 @@ const findCounty = (long) => {
 
 const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
+  const cuisine = sessionsPreferences["food_type"]
+
+  // // Default preferences for food type
+  if (cuisine === "default") {
+    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5`, {
+      headers: {
+        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+      }
+    })
+      .then(res => {
+        const restaurant_info = res.data.data
+        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+      })
+      .catch(error => console.log(error))
+  }
+  // specific cuisine preferences
+  else {
+    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5&cuisine=${cuisine}`, {
+      headers: {
+        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+      }
+    })
+      .then(res => {
+        const restaurant_info = res.data.data
+        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+      })
+      .catch(error => console.log(error))
+  }
+
+  let num = Math.floor(Math.random() * restaurant_info.length);
+
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
   sessionElement.innerHTML = `
       <article
         class="beach-data"
         data-lat=${lat}
-        data-long=${long}>
+        data-long=${long}
+        data-waveHeight=${waveHeight}
+        data-waterTemp=${waterTemp}
+        data-restaurant=${restaurant_info[num].restaurant_name}>
       </article>
 
       <div class="content">
@@ -354,21 +387,26 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
               </div>
             </div>
           </div>
+          <h4 class="ui sub header">Restaurant Recommendation</h4>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>name: ${restaurant_info[num].restaurant_name}</p>
+                <p>phone: ${restaurant_info[num].restaurant_phone}</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div class="extra content vote-area">
-        <button class="positive ui button go-btn" href="#popup1">Go!</button>
       </div>
 
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Here i am</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            Thank to pop me out of that button, but now i'm done so you can close this window.
-          </div>
-        </div>
+
+      <div class="extra content vote-area">
+        <button class="positive ui button go-btn">Go!</button>
       </div>
+
+
+
       `
   document.getElementById('sessions-display').append(sessionElement)
 
@@ -391,7 +429,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -409,7 +447,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
   }
   else if (userCounty === 'orangeCounty') {
     beaches.orangeCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -539,7 +577,7 @@ document.addEventListener('click', event => {
 /////////////////////////////////////////////////////////////////////////
 // go-btn
 document.addEventListener('click', event => {
-  if (event.target.classList.contains('go-btn')) {
+  if (event.target.classList.contains('find-by-county-select')) {
 
     const latitude = event.target.parentNode.parentNode.children[0].dataset.lat
     const longitude = event.target.parentNode.parentNode.children[0].dataset.long
@@ -571,21 +609,5 @@ document.addEventListener('click', event => {
         })
         .catch(error => console.log(error))
     }
-
-    // Display list of restaurants and let user choose one
-    displayRestaurants()
   }
 })
-
-const displayRestaurants = () => {
-
-  console.log(restaurant_info)
-
-  // If there is no favorites data, load no favorites message.
-  if (restaurant_info.length === 0) {
-    //document.getElementById('restaurants-main-display').innerHTML = ``
-  }
-  else {
-    //document.getElementById('restaurants-main-display').innerHTML = ``
-  }
-}
