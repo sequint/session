@@ -169,11 +169,11 @@ const displayFavorites = () => {
           <div class="extra content vote-area">
             <span class="left floated star vote favorite">
               <i class="star icon"></i>
-              Favorite
+              <span class="vote-text">Favorite</span>
             </span>
             <span class="right floated star vote delete">
               <i class="close icon"></i>
-              Delete
+              <span class="vote-text">Delete</span>
             </span>
           </div>
       `
@@ -184,10 +184,12 @@ const displayFavorites = () => {
 }
 
 document.addEventListener('click', event => {
+
   if (event.target.classList.contains('favorite')) {
+  
     // Create a variable that stores the embeded data set from the parent node.
     let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
-
+    console.log(sessionData)
     let newFavorite = {
       date: sessionData.dataset.date,
       location: sessionData.dataset.location,
