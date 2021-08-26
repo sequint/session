@@ -36,18 +36,64 @@ document.getElementById('restaurant-search').addEventListener('click', event => 
   }
 
   // Display list of restaurants and let user choose one
-  let restaurant_displayElem = `
-  <div class="ui placeholder segment">
-        <div class="inline">
-          Name: ${restaurant_info[0].restaurant_name}
-					<hr>
-					Phone: ${restaurant_info[0].restaurant_phone}
-					<hr>
-					Address: ${restaurant_info[0].address}
-					<hr>
-					Food Type: ${restaurant_info[0].cuisine}
+  displayRestaurants()
+})
+
+const displayRestaurants = () => {
+  // If there is no favorites data, load no favorites message.
+  if (restaurant_info.length === 0) {
+    document.getElementById('restaurants-main-display').innerHTML = `
+      <div class="no-data-message">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+          No results found!
         </div>
       </div>
-  `
+      `
+  }
+  else {
+    // Clear out the history display section.
+    document.getElementById('restaurants-main-display').innerHTML = ''
 
-})
+    restaurant_info.forEach(restaurant => {
+      let restaurantElement = document.createElement('div')
+      restaurantElement.className = 'ui card'
+      restaurantElement.innerHTML = `
+          <div class="content">
+            <div class="header">${restaurant.restaurant_name}</div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header">${restaurant.restaurant_phone}</h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Wave Height: ${restaurant.restaurant_id} ft.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <p>Water Temp: ${restaurant.address} degrees</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content vote-area">
+            <span class="left floated star vote favorite">
+              <i class="star icon"></i>
+              Favorite
+            </span>
+            <span class="right floated star vote delete">
+              <i class="close icon"></i>
+              Delete
+            </span>
+          </div>
+      `
+
+      document.getElementById('restaurant-main-display').append(sessionElement)
+    })
+  }
+}
