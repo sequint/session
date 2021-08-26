@@ -329,7 +329,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       <article
         class="beach-data"
         data-lat=${lat}
-        data-long=${session.location}>
+        data-long=${long}>
       </article>
 
       <div class="content">
@@ -404,7 +404,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
           let waterTemp = res.data.data.weather[0].hourly[0].waterTemp_F
 
           if ((waveHeight >= wavePrefLow && waveHeight <= wavePrefHigh) && (waterTemp >= tempPrefLow && waterTemp <= tempPrefHigh)) {
-            displayBeachCard(location, waveHeight, waterTemp)
+            displayBeachCard(location, waveHeight, waterTemp, beach.latitude, beach.longitude)
           }
           else {
             console.log('No beaches found.')
