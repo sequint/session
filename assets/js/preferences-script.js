@@ -28,6 +28,16 @@ else if (sessionsPreferences.food_type != "none") {
 					<hr>
 					Food Type: ${sessionsPreferences.food_type}
         </div>
+				<a href="set-preferences.html">
+          <button class="pref-btn hover" id="button1">
+            Change your preferences
+          </button>
+        </a>
+				<a href="./sessions.html">
+          <button class="pref-btn hover" id="button2">
+						Session
+          </button>
+        </a>
       </div>
       `
 }
