@@ -3,7 +3,7 @@
 let restaurant_info = JSON.parse(localStorage.getItem('restaurant_info')) || []
 let restaurant_choice = JSON.parse(localStorage.getItem('restaurant_choice')) || []
 
-document.getElementById('restaurant-search').addEventListener('click', event => {
+document.getElementById('go-btn').addEventListener('click', event => {
   const latitude = sessionStorage.getItem('latitude')
   const longitude = sessionStorage.getItem('longitude')
   const cuisine = sessionsPreferences.getItem('food_type')
@@ -43,57 +43,29 @@ const displayRestaurants = () => {
   // If there is no favorites data, load no favorites message.
   if (restaurant_info.length === 0) {
     document.getElementById('restaurants-main-display').innerHTML = `
-      <div class="no-data-message">
-        <div class="ui icon header">
-          <i class="search icon"></i>
-          No results found!
+      <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>Here i am</h2>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+          </div>
         </div>
       </div>
       `
   }
   else {
-    // Clear out the history display section.
-    document.getElementById('restaurants-main-display').innerHTML = ''
-
-    restaurant_info.forEach(restaurant => {
-      let restaurantElement = document.createElement('div')
-      restaurantElement.className = 'ui card'
-      restaurantElement.innerHTML = `
+    document.getElementById('restaurants-main-display').innerHTML = `
+      <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>Here i am</h2>
+          <a class="close" href="#">&times;</a>
           <div class="content">
-            <div class="header">${restaurant.restaurant_name}</div>
+            Thank to pop me out of that button, but now i'm done so you can close this window.
           </div>
-          <div class="content">
-            <h4 class="ui sub header">${restaurant.restaurant_phone}</h4>
-            <div class="ui small feed">
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Wave Height: ${restaurant.restaurant_id} ft.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="event">
-                <div class="content">
-                  <div class="summary">
-                    <p>Water Temp: ${restaurant.address} degrees</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="extra content vote-area">
-            <span class="left floated star vote favorite">
-              <i class="star icon"></i>
-              Favorite
-            </span>
-            <span class="right floated star vote delete">
-              <i class="close icon"></i>
-              Delete
-            </span>
-          </div>
-      `
-
-      document.getElementById('restaurant-main-display').append(sessionElement)
-    })
+        </div>
+      </div>
+    `
   }
 }
+
