@@ -354,19 +354,14 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
           </div>
         </div>
       </div>
+
+
       <div class="extra content vote-area">
-        <button class="positive ui button go-btn" href="#popup1">Go!</button>
+        <button class="positive ui button go-btn">Go!</button>
       </div>
 
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Here i am</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            Thank to pop me out of that button, but now i'm done so you can close this window.
-          </div>
-        </div>
-      </div>
+
+
       `
   document.getElementById('sessions-display').append(sessionElement)
 
@@ -389,7 +384,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -407,7 +402,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
   }
   else if (userCounty === 'orangeCounty') {
     beaches.orangeCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -586,4 +581,8 @@ const displayRestaurants = () => {
   else {
     //document.getElementById('restaurants-main-display').innerHTML = ``
   }
+}
+
+function togglePopup() {
+  document.getElementById("popup-1").classList.toggle("active");
 }
