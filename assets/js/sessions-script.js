@@ -16,9 +16,6 @@ const displayHistory = () => {
         <i class="search icon"></i>
         Looks like you don't have any sessions recorded yet!
       </div>
-      <div class="inline">
-        <div class="ui button">Find a Session</div>
-      </div>
     </div>
     `
   }
