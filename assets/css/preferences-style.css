@@ -80,31 +80,6 @@ i.icon {
 	opacity: .8;
 }
 
-.like-dislike-area {
-	text-align: center;
-}
-
-.like {
-	padding-right: 50px;
-}
-
-.dislike {
-	padding-right: 0px;
-}
-
-.dislike:hover {
-	color: black;
-	cursor: pointer;
-}
-
-.no-data-message {
-	font-size: 40px;
-	font-weight: bold;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 50px 50px 50px 50px;
-}
-
 .user-input-container {
 	font-size: 900x;
 	font-weight: bold;
@@ -124,3 +99,44 @@ i.icon {
 	background-color: #03045E;
 	color: white !important;
 }
+
+.pref-nav-btns {
+	display: inline;
+	border: #03045E solid 3px;
+	border-radius: 10px;
+	background-color: #03045E;
+	color: white;
+	height: 40px;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 425px;
+}
+.pref-nav-btns:hover {
+	background-color: transparent;
+	color: #03045E;
+	cursor: pointer;
+}
+
+.pref-output {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.user-output {
+	font-weight: lighter;
+	padding-left: 30px;
+	float: right;
+}
+
+.no-pref {
+	font-size: 30px;
+	margin-bottom: 5px !important;
+	text-align: center;
+}
+
+.set-pref-btn {
+	font-size: 20px;
+	width: 200px;
+}
+
+@media only screen and (max-width: 576px) {}

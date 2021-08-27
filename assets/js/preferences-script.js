@@ -4,39 +4,33 @@ let sessionsPreferences = JSON.parse(localStorage.getItem('sessionsPreferences')
 if (sessionsPreferences.food_type == "none") {
 	document.getElementById('preferences-message').innerHTML = `
       <div class="ui placeholder segment">
-        <div class="inline">
-          Looks like you don't have any preferences yet!
-					Set up your preferences first!
+        <div>
+          <p class="no-pref">Looks like you don't have any preferences yet!</p>
+					<p class="no-pref">Set up your preferences first!</p>
         </div>
-				<button class="pref-btn hover" id="button1">
-					<a href="set-preferences.html">
-						Set your preferences
-					</a>
-				</button>
+				<a href="set-preferences.html">
+					<button class="pref-nav-btns set-pref-btn" id="button1">Set Preferences</button>
+				</a>
       </div>
       `
 }
 else if (sessionsPreferences.food_type != "none") {
 	document.getElementById('preferences-message').innerHTML = `
 			<div class="ui placeholder segment">
-        <div class="inline">
-          Wave Height: ${sessionsPreferences.wave_height}
+        <div class="inline pref-output">
+          Wave Height: <span class="user-output">${sessionsPreferences.wave_height}</span>
 					<hr>
-					Water Temp: ${sessionsPreferences.water_temp}
+					Water Temp: <span class="user-output">${sessionsPreferences.water_temp}</span>
 					<hr>
-					Price Range: ${sessionsPreferences.price_range}
+					Price Range: <span class="user-output">${sessionsPreferences.price_range}</span>
 					<hr>
-					Food Type: ${sessionsPreferences.food_type}
+					Food Type: <span class="user-output">${sessionsPreferences.food_type}</span>
         </div>
-      </div>
-			<button class="ui button" >
 				<a href="set-preferences.html">
-					Change your preferences
+					<button class="pref-nav-btns change-pref" >Change Preferences</button>
 				</a>
-			</button>
-			<div class="ui button" tabindex="0">
 				<a href="sessions.html">
-					Go to Sessions
+					<button class="pref-nav-btns" tabindex="0">Go to Sessions</button>
 				</a>
 			</div>
       `
