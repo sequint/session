@@ -8,11 +8,11 @@ if (sessionsPreferences.food_type == "none") {
           Looks like you don't have any preferences yet!
 					Set up your preferences first!
         </div>
-				<a href="set-preferences.html">
-          <button class="pref-btn hover" id="button1">
-            Set your preferences
-          </button>
-        </a>
+				<button class="pref-btn hover" id="button1">
+					<a href="set-preferences.html">
+						Set your preferences
+					</a>
+				</button>
       </div>
       `
 }
@@ -28,17 +28,17 @@ else if (sessionsPreferences.food_type != "none") {
 					<hr>
 					Food Type: ${sessionsPreferences.food_type}
         </div>
-				<a href="set-preferences.html">
-          <button class="pref-btn hover" id="button1">
-            Change your preferences
-          </button>
-        </a>
-				<a href="./sessions.html">
-          <button class="pref-btn hover" id="button2">
-						Session
-          </button>
-        </a>
       </div>
+			<button class="ui button" >
+				<a href="set-preferences.html">
+					Change your preferences
+				</a>
+			</button>
+			<div class="ui button" tabindex="0">
+				<a href="sessions.html">
+					Go to Sessions
+				</a>
+			</div>
       `
 }
 
