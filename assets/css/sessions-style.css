@@ -67,6 +67,13 @@ i.icon {
   margin-left: 80px !important;
 }
 
+.wave-near-me {
+  width: 300px !important;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 560px !important;
+}
+
 .fav-hist-toggle {
   float: right;
   border: #03045E solid 3px;
