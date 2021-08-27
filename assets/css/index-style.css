@@ -80,10 +80,6 @@ i.icon {
   height: 40px;
   width: 125px;
   margin-left: 115px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 .sess-btn {
@@ -94,10 +90,6 @@ i.icon {
   height: 40px;
   width: 100px;
   margin-left: 30px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 .pref-btn:hover {
@@ -125,4 +117,24 @@ i.icon {
   position: absolute !important;
   text-align: center !important;
   padding-top: 0px !important;
+}
+
+/* Style for mobile */
+@media only screen and (max-width: 576px) {
+  .background-img {
+    height: 840px;
+  }
+  .sessions-title {
+    font-size: 60px;
+    padding-top: 10px;
+  }
+  .about {
+    margin: 200px 0px 0px 0px;
+  }
+  .picture-img {
+    display: none;
+  }
+  .pref-btn {
+    margin: 20px auto 0px auto;
+  }
 }
