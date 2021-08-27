@@ -241,13 +241,13 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
     document.getElementById('sidebar').classList.add('visible')
     sideBarButton.classList.remove('bars')
     sideBarButton.classList.add('close')
-    sideBarButton.style.marginLeft = '78px'
+    sideBarButton.style.marginLeft = '92px'
     sideBarButton.style.color = 'white'
     sideBarToggle = true
   }
   else {
     document.getElementById('sidebar').classList.remove('visible')
-    sideBarButton.style.marginLeft = '20px'
+    sideBarButton.style.marginLeft = '0px'
     sideBarButton.classList.remove('close')
     sideBarButton.classList.add('bars')
     sideBarToggle = false
