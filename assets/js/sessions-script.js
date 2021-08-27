@@ -153,7 +153,8 @@ document.addEventListener('click', event => {
   if (event.target.classList.contains('favorite')) {
 
     // Create a variable that stores the embeded data set from the parent node.
-    let sessionData = event.target.parentNode.parentNode.parentNode.children[0].children[0]
+    let sessionData = event.target.parentNode.parentNode.children[0]
+    console.log(event.target)
     console.log(sessionData)
     let newFavorite = {
       date: sessionData.dataset.date,
