@@ -174,8 +174,11 @@ document.addEventListener('click', event => {
       sessionsFavorites.unshift(newFavorite)
       // Add updated favorites array to local storage using site favorites key.
       localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
+      alert("Your favorite has been updated!")
     }
-
+    else {
+      alert("You already have favorite session for today! Try tomorrow!")
+    }
 
   }
 
@@ -572,44 +575,7 @@ document.addEventListener('click', event => {
 
     console.log(obj)
     sessionsHistory.push(obj)
+    alert("Your Session has been saved to the history!")
     displayHistory()
-  }
-})
-
-
-
-document.addEventListener('click', event => {
-  if (event.target.classList.contains('find-by-county-select')) {
-
-    const latitude = event.target.parentNode.parentNode.children[0].dataset.lat
-    const longitude = event.target.parentNode.parentNode.children[0].dataset.long
-    const cuisine = sessionsPreferences["food_type"]
-
-    // // Default preferences for food type
-    if (cuisine === "default") {
-      axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${latitude}&lon=${longitude}&distance=5`, {
-        headers: {
-          'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
-        }
-      })
-        .then(res => {
-          const restaurant_info = res.data.data
-          localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
-        })
-        .catch(error => console.log(error))
-    }
-    // specific cuisine preferences
-    else {
-      axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${latitude}&lon=${longitude}&distance=5&cuisine=${cuisine}`, {
-        headers: {
-          'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
-        }
-      })
-        .then(res => {
-          const restaurant_info = res.data.data
-          localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
-        })
-        .catch(error => console.log(error))
-    }
   }
 })

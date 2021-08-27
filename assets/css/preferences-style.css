@@ -119,3 +119,8 @@ i.icon {
 .ui.placeholder.segment {
 	margin-top: 100px;
 }
+
+.ui .button {
+	background-color: #03045E;
+	color: white !important;
+}
