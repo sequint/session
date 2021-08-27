@@ -241,7 +241,7 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
     document.getElementById('sidebar').classList.add('visible')
     sideBarButton.classList.remove('bars')
     sideBarButton.classList.add('close')
-    sideBarButton.style.marginLeft = '85px'
+    sideBarButton.style.marginLeft = '78px'
     sideBarButton.style.color = 'white'
     sideBarToggle = true
   }
