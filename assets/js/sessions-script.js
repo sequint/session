@@ -433,7 +433,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -451,7 +451,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
   }
   else if (userCounty === 'orangeCounty') {
     beaches.orangeCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=ed6198f68a1c49b499d202324212608&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -461,7 +461,15 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
             displayBeachCard(location, waveHeight, waterTemp, beach.latitude, beach.longitude)
           }
           else {
-            console.log('No beaches found.')
+            document.getElementById('sessions-display').innerHTML = `
+            <div class="ui very padded segment no-wave-display">
+              <p class="no-wave-message">We couldn't find any waves your area that match your preferences.</p>
+              <p class="no-wave-message">Make sure you have set your wave and temperature preferences to find a wave!</p>
+              <a href="set-preferences.html">
+                <button class="pref-nav-btns change-pref no-wave-btn" >Change Preferences</button>
+              </a>
+            </div>
+            `
           }
         })
         .catch(error => console.log(error))
