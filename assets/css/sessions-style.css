@@ -81,6 +81,14 @@ i.icon {
   margin-right: 610px !important;
 }
 
+.county-select-title {
+  margin-left: 635px;
+}
+
+.orangeRadio {
+  margin-left: 560px;
+}
+
 .county-selection {
   font-size: 18px;
 }
@@ -110,7 +118,7 @@ i.icon {
   margin-top: 100px !important;
 }
 
-.search-area {
+.rearch-area {
   text-align: center;
 }
 
@@ -118,6 +126,12 @@ i.icon {
   color: black !important;
   opacity: 1 !important;
   margin-top: 50px !important;
+}
+
+.session-message {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sessions-content-container {
@@ -192,6 +206,21 @@ i.icon {
   .fav-hist-toggle {
     width: 145px;
     margin-right: 100px;
+  }
+  .session-message {
+    width: 350px;
+  }
+  .county-select-title {
+    margin-left: 86px;
+  }
+  .orangeRadio {
+    margin-left: 25px;
+  }
+  .find-by-county-select {
+    margin-right: 70px !important;
+  }
+  .nothing-rec-message {
+    font-size: 10px;
   }
   .ui.card {
     margin-left: 0px;

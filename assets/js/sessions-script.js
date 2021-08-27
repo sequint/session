@@ -12,7 +12,7 @@ const displayHistory = () => {
   if (sessionsHistory.length === 0) {
     document.getElementById('sessions-main-display').innerHTML = `
     <div class="no-data-message">
-      <div class="ui icon header">
+      <div class="ui icon header nothing-rec-message">
         <i class="search icon"></i>
         Looks like you don't have any sessions recorded yet!
       </div>
@@ -504,9 +504,9 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
       },
       err => {
         document.getElementById('search-area').innerHTML = `
-        <h3>Please Select a County</h3>
+        <h3 class="county-select-title">Please Select a County</h3>
         <div>
-          <input type="radio" id="orangeCounty" value="orangeCounty">
+          <input type="radio" class="orangeRadio" id="orangeCounty" value="orangeCounty">
 					<label for="orangeCounty" class="county-selection">Orange County</label>
           <input type="radio" class="sdRadio" id="sanDiegoCounty" value="sanDiegoCounty">
 					<label for="sanDiegoCounty" class="county-selection">San Diego County</label>
