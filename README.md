@@ -13,3 +13,9 @@ Two APIs are used to pull surf and food data:
     - Used to pull information about surf reports for each day.
   - Documenu: https://documenu.com/docs
     - Used to find local restaurants that match the users preferences.
+
+## Deployed Site
+
+[Session](https://sequint.github.io/session/)
+
+![ScreenShot](/assets/README-screenshot.png)
