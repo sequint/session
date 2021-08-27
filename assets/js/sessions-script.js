@@ -180,20 +180,38 @@ document.addEventListener('click', event => {
 
   }
 
+  // Delete Function for session card
   if (event.target.classList.contains('delete')) {
     let date = event.target.parentNode.parentNode.parentNode.children[0].children[0].dataset.date
-    // remove from localstorage
-    for (i = 0; i < sessionsHistory.length; i++) {
-      if (sessionsHistory[i].date === date) {
-        sessionsHistory.splice(i, 1);
-        localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
+
+    // Delete Favorite card
+    if (document.getElementById('fav-hist-toggle').textContent === 'History') {
+      alert("Favorites Deleted!")
+      for (i = 0; i < sessionsFavorites.length; i++) {
+        if (sessionsFavorites[i].date === date) {
+          sessionsFavorites.splice(i, 1);
+          console.log(sessionsFavorites)
+          sessionsFavorites.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
+        }
       }
+
+      displayFavorites()
+      alert("Favorites Deleted!")
     }
 
-    displayHistory()
+    // Delete History Card
+    else if (document.getElementById('fav-hist-toggle').textContent === 'Favorite Sessions') {
+      for (i = 0; i < sessionsHistory.length; i++) {
+        if (sessionsHistory[i].date === date) {
+          sessionsHistory.splice(i, 1);
+          console.log(sessionsHistory)
+          localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
+        }
+      }
 
-    // remove from 
-    alert("Deleted!")
+      displayHistory()
+      alert("History Deleted!")
+    }
   }
 
 })
