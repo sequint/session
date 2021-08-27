@@ -111,6 +111,7 @@ i.icon {
 	margin-top: 20px;
 	margin-left: 425px;
 }
+
 .pref-nav-btns:hover {
 	background-color: transparent;
 	color: #03045E;
@@ -140,4 +141,31 @@ i.icon {
 	margin-left: 480px;
 }
 
-@media only screen and (max-width: 576px) {}
+.session-message {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.preferences-title {
+	text-align: center;
+	font-size: 60px;
+	padding-top: 30px;
+	color: white;
+}
+
+@media only screen and (max-width: 576px) {
+	.session-message {
+		width: 350px;
+	}
+	.pref-nav-btns {
+		margin-left: 0px;
+	}
+	.change-pref {
+		margin-top: 30px;
+	}
+	.preferences-title {
+		font-size: 48px;
+		padding-left: 0px;
+	}
+}
