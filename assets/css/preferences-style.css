@@ -168,4 +168,7 @@ i.icon {
 		font-size: 48px;
 		padding-left: 0px;
 	}
+	.set-pref-btn {
+		margin-left: 60px !important;
+	}
 }
