@@ -183,6 +183,12 @@ i.icon {
   .sessions-title {
     font-size: 60px;
   }
+  .wave-near-me {
+    width: 300px !important;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 0px !important;
+  }
   .fav-hist-toggle {
     width: 40px;
     margin-right: 115px;
