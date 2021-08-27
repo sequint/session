@@ -187,11 +187,11 @@ i.icon {
     width: 300px !important;
     font-size: 20px;
     font-weight: bold;
-    margin-right: 0px !important;
+    margin-right: 24px !important;
   }
   .fav-hist-toggle {
-    width: 40px;
-    margin-right: 115px;
+    width: 145px;
+    margin-right: 100px;
   }
   .ui.card {
     margin-left: 0px;
