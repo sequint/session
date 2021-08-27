@@ -34,3 +34,18 @@ i.icon {
   margin-left: auto;
   margin-right: auto;
 }
+
+.set-titles {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.set-responses {
+  font-size: 20px;
+}
+
+.set-pref-radio {
+  margin-left: 20px;
+}
