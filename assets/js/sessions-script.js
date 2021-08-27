@@ -330,6 +330,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
   const cuisine = sessionsPreferences["food_type"]
 
+
   // // Default preferences for food type
   if (cuisine === "default") {
     axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5`, {
@@ -338,7 +339,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       }
     })
       .then(res => {
-        const restaurant_info = res.data.data
+        restaurant_info = res.data.data
         localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
       })
       .catch(error => console.log(error))
@@ -351,7 +352,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       }
     })
       .then(res => {
-        const restaurant_info = res.data.data
+        restaurant_info = res.data.data
         localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
       })
       .catch(error => console.log(error))
