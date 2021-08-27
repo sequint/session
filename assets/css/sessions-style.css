@@ -75,7 +75,18 @@ i.icon {
 }
 
 .find-by-county-select {
+  font-size: 20px !important;
   width: 200px !important;
+  margin-top: 20px;
+  margin-right: 610px !important;
+}
+
+.county-selection {
+  font-size: 18px;
+}
+
+.sdRadio {
+  margin-left: 10px;
 }
 
 .fav-hist-toggle {
