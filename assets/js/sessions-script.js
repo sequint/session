@@ -12,12 +12,9 @@ const displayHistory = () => {
   if (sessionsHistory.length === 0) {
     document.getElementById('sessions-main-display').innerHTML = `
     <div class="no-data-message">
-      <div class="ui icon header">
+      <div class="ui icon header nothing-rec-message">
         <i class="search icon"></i>
         Looks like you don't have any sessions recorded yet!
-      </div>
-      <div class="inline">
-        <div class="ui button">Find a Session</div>
       </div>
     </div>
     `
@@ -244,13 +241,13 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
     document.getElementById('sidebar').classList.add('visible')
     sideBarButton.classList.remove('bars')
     sideBarButton.classList.add('close')
-    sideBarButton.style.marginLeft = '85px'
+    sideBarButton.style.marginLeft = '92px'
     sideBarButton.style.color = 'white'
     sideBarToggle = true
   }
   else {
     document.getElementById('sidebar').classList.remove('visible')
-    sideBarButton.style.marginLeft = '20px'
+    sideBarButton.style.marginLeft = '0px'
     sideBarButton.classList.remove('close')
     sideBarButton.classList.add('bars')
     sideBarToggle = false
@@ -507,12 +504,12 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
       },
       err => {
         document.getElementById('search-area').innerHTML = `
-        <h3>Please Select a County</h3>
+        <h3 class="county-select-title">Please Select a County</h3>
         <div>
-          <input type="radio" id="orangeCounty" value="orangeCounty">
-					<label for="orangeCounty">Orange County</label>
-          <input type="radio" id="sanDiegoCounty" value="sanDiegoCounty">
-					<label for="sanDiegoCounty">San Diego County</label>
+          <input type="radio" class="orangeRadio" id="orangeCounty" value="orangeCounty">
+					<label for="orangeCounty" class="county-selection">Orange County</label>
+          <input type="radio" class="sdRadio" id="sanDiegoCounty" value="sanDiegoCounty">
+					<label for="sanDiegoCounty" class="county-selection">San Diego County</label>
         </div>
         <button class="fav-hist-toggle find-by-county-select">Find</button>
         `

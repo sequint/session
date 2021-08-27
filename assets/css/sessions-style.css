@@ -75,7 +75,26 @@ i.icon {
 }
 
 .find-by-county-select {
+  font-size: 20px !important;
   width: 200px !important;
+  margin-top: 20px;
+  margin-right: 610px !important;
+}
+
+.county-select-title {
+  margin-left: 635px;
+}
+
+.orangeRadio {
+  margin-left: 560px;
+}
+
+.county-selection {
+  font-size: 18px;
+}
+
+.sdRadio {
+  margin-left: 10px;
 }
 
 .fav-hist-toggle {
@@ -99,7 +118,7 @@ i.icon {
   margin-top: 100px !important;
 }
 
-.search-area {
+.rearch-area {
   text-align: center;
 }
 
@@ -107,6 +126,12 @@ i.icon {
   color: black !important;
   opacity: 1 !important;
   margin-top: 50px !important;
+}
+
+.session-message {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sessions-content-container {
@@ -172,9 +197,30 @@ i.icon {
   .sessions-title {
     font-size: 60px;
   }
+  .wave-near-me {
+    width: 300px !important;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 24px !important;
+  }
   .fav-hist-toggle {
-    width: 40px;
-    margin-right: 115px;
+    width: 145px;
+    margin-right: 100px;
+  }
+  .session-message {
+    width: 350px;
+  }
+  .county-select-title {
+    margin-left: 86px;
+  }
+  .orangeRadio {
+    margin-left: 25px;
+  }
+  .find-by-county-select {
+    margin-right: 70px !important;
+  }
+  .nothing-rec-message {
+    font-size: 10px;
   }
   .ui.card {
     margin-left: 0px;
