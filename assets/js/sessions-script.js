@@ -173,10 +173,6 @@ document.addEventListener('click', event => {
       sessionsFavorites.unshift(newFavorite)
       // Add updated favorites array to local storage using site favorites key.
       localStorage.setItem('sessionsFavorites', JSON.stringify(sessionsFavorites))
-      alert("Your favorite has been updated!")
-    }
-    else {
-      alert("You already have favorite session for today! Try tomorrow!")
     }
 
   }
@@ -187,7 +183,6 @@ document.addEventListener('click', event => {
 
     // Delete Favorite card
     if (document.getElementById('fav-hist-toggle').textContent === 'History') {
-      alert("Favorites Deleted!")
       for (i = 0; i < sessionsFavorites.length; i++) {
         if (sessionsFavorites[i].date === date) {
           sessionsFavorites.splice(i, 1);
@@ -197,7 +192,6 @@ document.addEventListener('click', event => {
       }
 
       displayFavorites()
-      alert("Favorites Deleted!")
     }
 
     // Delete History Card
@@ -211,7 +205,6 @@ document.addEventListener('click', event => {
       }
 
       displayHistory()
-      alert("History Deleted!")
     }
   }
 
