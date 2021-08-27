@@ -99,7 +99,8 @@ const displayFavorites = () => {
 
     sessionsFavorites.forEach(session => {
       let sessionElement = document.createElement('div')
-      sessionElement.className = 'ui card'
+      sessionElement.className = `ui card`
+      sessionElement.id = `${session.date}`
       sessionElement.innerHTML = `
           <div class="content">
             <div class="header">${session.date}</div>
@@ -177,6 +178,22 @@ document.addEventListener('click', event => {
       alert("You already have favorite session for today! Try tomorrow!")
     }
 
+  }
+
+  if (event.target.classList.contains('delete')) {
+    let date = event.target.parentNode.parentNode.parentNode.children[0].children[0].dataset.date
+    // remove from localstorage
+    for (i = 0; i < sessionsHistory.length; i++) {
+      if (sessionsHistory[i].date === date) {
+        sessionsHistory.splice(i, 1);
+        localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
+      }
+    }
+
+    displayHistory()
+
+    // remove from 
+    alert("Deleted!")
   }
 
 })
@@ -506,9 +523,9 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
         document.getElementById('search-area').innerHTML = `
         <h3 class="county-select-title">Please Select a County</h3>
         <div>
-          <input type="radio" class="orangeRadio" id="orangeCounty" value="orangeCounty">
+          <input type="radio" name="county_selection" class="orangeRadio" id="orangeCounty" value="orangeCounty">
 					<label for="orangeCounty" class="county-selection">Orange County</label>
-          <input type="radio" class="sdRadio" id="sanDiegoCounty" value="sanDiegoCounty">
+          <input type="radio" name="county_selection" class="sdRadio" id="sanDiegoCounty" value="sanDiegoCounty">
 					<label for="sanDiegoCounty" class="county-selection">San Diego County</label>
         </div>
         <button class="fav-hist-toggle find-by-county-select">Find</button>
