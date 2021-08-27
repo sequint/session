@@ -48,4 +48,19 @@ i.icon {
 
 .set-pref-radio {
   margin-left: 20px;
+  text-align: left;
+}
+
+.set-pref-title {
+  text-align: center;
+  font-size: 60px;
+  padding-top: 30px;
+  color: white;
+}
+
+@media only screen and (max-width: 576px) {
+  .set-pref-title {
+    font-size: 27px;
+    margin-left: 0px;
+  }
 }

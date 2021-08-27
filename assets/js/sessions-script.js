@@ -572,7 +572,12 @@ document.addEventListener('click', event => {
 
     console.log(obj)
     sessionsHistory.push(obj)
-    alert("Your Session has been saved to the history!")
+
+    // Place updated history array into local storage.
+    localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
+
+    alert('Your Session has been created!  Enjoy your surf!')
+
     displayHistory()
   }
 })

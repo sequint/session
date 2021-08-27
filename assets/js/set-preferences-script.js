@@ -80,7 +80,7 @@ document.getElementById('sidebar-toggler').addEventListener('click', event => {
 	}
 	else {
 		document.getElementById('sidebar').classList.remove('visible')
-		sideBarButton.style.marginLeft = '20px'
+		sideBarButton.style.marginLeft = '0px'
 		sideBarButton.classList.remove('close')
 		sideBarButton.classList.add('bars')
 		sideBarToggle = false
