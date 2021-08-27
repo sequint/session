@@ -514,7 +514,7 @@ document.getElementById('wave-near-me').addEventListener('click', event => {
           <input type="radio" id="sanDiegoCounty" value="sanDiegoCounty">
 					<label for="sanDiegoCounty">San Diego County</label>
         </div>
-        <button class="find-by-county-select">Find</button>
+        <button class="fav-hist-toggle find-by-county-select">Find</button>
         `
       }
     )
