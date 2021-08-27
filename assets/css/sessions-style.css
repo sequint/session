@@ -74,6 +74,10 @@ i.icon {
   margin-right: 560px !important;
 }
 
+.find-by-county-select {
+  width: 200px !important;
+}
+
 .fav-hist-toggle {
   float: right;
   border: #03045E solid 3px;
