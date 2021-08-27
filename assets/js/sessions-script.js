@@ -624,8 +624,16 @@ document.addEventListener('click', event => {
     // Place updated history array into local storage.
     localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
 
-    alert('Your Session has been created!  Enjoy your surf!')
+    document.getElementById('created-session-message').style.display = "block"
 
     displayHistory()
   }
+})
+
+document.addEventListener('click', event => {
+
+  if (event.target.classList.contains('close-modal')) {
+    document.getElementById('created-session-message').style.display = "none"
+  }
+
 })

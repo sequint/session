@@ -217,6 +217,10 @@ i.icon {
   margin-left: 266px;
 }
 
+.created-session-message {
+  padding: 100px 0px 0px 450px !important;
+}
+
 @media only screen and (max-width: 576px) {
   .toggle-btn-container {
     margin-left: 10px;
@@ -264,5 +268,8 @@ i.icon {
   }
   .no-wave-btn {
     margin-left: 60px;
+  }
+  .created-session-message {
+    margin: 100px 0px 0px 8px !important;
   }
 }
