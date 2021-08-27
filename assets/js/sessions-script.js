@@ -333,7 +333,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
   if (cuisine === "default") {
     axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5`, {
       headers: {
-        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+        'X-API-KEY': '3daea0a7eb482773585dcd1682611a69'
       }
     })
       .then(res => {
@@ -346,7 +346,7 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
   else {
     axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5&cuisine=${cuisine}`, {
       headers: {
-        'X-API-KEY': '65e9991ec80a9970fe3112ddc2617c8b'
+        'X-API-KEY': '3daea0a7eb482773585dcd1682611a69'
       }
     })
       .then(res => {
@@ -357,6 +357,9 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
   }
 
   let num = Math.floor(Math.random() * restaurant_info.length);
+
+  console.log(num)
+  console.log(restaurant_info[num].restaurant_name)
 
   let sessionElement = document.createElement('div')
   sessionElement.className = 'ui card'
@@ -614,7 +617,7 @@ document.addEventListener('click', event => {
     }
 
     console.log(obj)
-    sessionsHistory.push(obj)
+    sessionsHistory.unshift(obj)
 
     // Place updated history array into local storage.
     localStorage.setItem('sessionsHistory', JSON.stringify(sessionsHistory))
