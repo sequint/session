@@ -190,6 +190,33 @@ i.icon {
   height: 0px;
 }
 
+.pref-nav-btns {
+  display: inline;
+  border: #03045E solid 3px;
+  border-radius: 10px;
+  background-color: #03045E;
+  color: white;
+  height: 40px;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 425px;
+}
+
+.pref-nav-btns:hover {
+  background-color: transparent;
+  color: #03045E;
+  cursor: pointer;
+}
+
+.no-wave-message {
+  font-size: 20px;
+  text-align: center;
+}
+
+.no-wave-btn {
+  margin-left: 266px;
+}
+
 @media only screen and (max-width: 576px) {
   .toggle-btn-container {
     margin-left: 10px;
@@ -231,5 +258,11 @@ i.icon {
   }
   .star.icon {
     padding-left: 25px;
+  }
+  .no-wave-display {
+    width: 350px;
+  }
+  .no-wave-btn {
+    margin-left: 60px;
   }
 }
