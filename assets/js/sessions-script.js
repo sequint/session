@@ -321,7 +321,7 @@ const findCounty = (long) => {
 
 const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
 
-  const cuisine = sessionsPreferences["food_type"]
+  let cuisine = sessionsPreferences["food_type"]
 
 
   // // Default preferences for food type
@@ -334,31 +334,12 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       .then(res => {
         restaurant_info = res.data.data
         localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
-      })
-      .catch(error => console.log(error))
-  }
-  // specific cuisine preferences
-  else {
-    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5&cuisine=${cuisine}`, {
-      headers: {
-        'X-API-KEY': '3daea0a7eb482773585dcd1682611a69'
-      }
-    })
-      .then(res => {
-        restaurant_info = res.data.data
-        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
-      })
-      .catch(error => console.log(error))
-  }
 
-  let num = Math.floor(Math.random() * restaurant_info.length);
+        let num = Math.floor(Math.random() * restaurant_info.length);
 
-  console.log(num)
-  console.log(restaurant_info[num].restaurant_name)
-
-  let sessionElement = document.createElement('div')
-  sessionElement.className = 'ui card'
-  sessionElement.innerHTML = `
+        let sessionElement = document.createElement('div')
+        sessionElement.className = 'ui card'
+        sessionElement.innerHTML = `
       <article
         class="beach-data"
         data-lat=${lat}
@@ -406,11 +387,142 @@ const displayBeachCard = (location, waveHeight, waterTemp, lat, long) => {
       <div class="extra content vote-area">
         <button class="positive ui button go-btn">Go!</button>
       </div>
-
-
-
       `
-  document.getElementById('sessions-display').append(sessionElement)
+        document.getElementById('sessions-display').append(sessionElement)
+      })
+      .catch(error => console.log(error))
+  }
+  // specific cuisine preferences
+  else {
+    axios.get(`https://api.documenu.com/v2/restaurants/search/geo?lat=${lat}&lon=${long}&distance=5&cuisine=${cuisine}`, {
+      headers: {
+        'X-API-KEY': '3daea0a7eb482773585dcd1682611a69'
+      }
+    })
+      .then(res => {
+        restaurant_info = res.data.data
+        localStorage.setItem('restaurant_info', JSON.stringify(restaurant_info))
+
+        let num = Math.floor(Math.random() * restaurant_info.length);
+
+        let sessionElement = document.createElement('div')
+        sessionElement.className = 'ui card'
+        sessionElement.innerHTML = `
+      <article
+        class="beach-data"
+        data-lat=${lat}
+        data-long=${long}
+        data-location="${location}"
+        data-waveHeight=${waveHeight}
+        data-waterTemp=${waterTemp}
+        data-restaurant="${restaurant_info[num].restaurant_name}">
+      </article>
+
+      <div class="content">
+        <div class="header">${location}</div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header">Wave Information</h4>
+        <div class="ui small feed">
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Wave Height: ${waveHeight} ft.</p>
+              </div>
+            </div>
+          </div>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>Water Temp: ${waterTemp} degrees</p>
+              </div>
+            </div>
+          </div>
+          <h4 class="ui sub header">Restaurant Recommendation</h4>
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                <p>name: ${restaurant_info[num].restaurant_name}</p>
+                <p>phone: ${restaurant_info[num].restaurant_phone}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="extra content vote-area">
+        <button class="positive ui button go-btn">Go!</button>
+      </div>
+      `
+        document.getElementById('sessions-display').append(sessionElement)
+      })
+      .catch(error => console.log(error))
+  }
+
+  // let restaurant_info_2 = JSON.parse(localStorage.getItem('restaurant_info'))
+  // console.log(restaurant_info_2)
+  // let num = Math.floor(Math.random() * restaurant_info.length);
+
+  // console.log(num)
+  // console.log(restaurant_info[num].restaurant_name)
+
+  // let sessionElement = document.createElement('div')
+  // sessionElement.className = 'ui card'
+  // sessionElement.innerHTML = `
+  //     <article
+  //       class="beach-data"
+  //       data-lat=${lat}
+  //       data-long=${long}
+  //       data-location="${location}"
+  //       data-waveHeight=${waveHeight}
+  //       data-waterTemp=${waterTemp}
+  //       data-restaurant="${restaurant_info[num].restaurant_name}">
+  //     </article>
+
+  //     <div class="content">
+  //       <div class="header">${location}</div>
+  //     </div>
+  //     <div class="content">
+  //       <h4 class="ui sub header">Wave Information</h4>
+  //       <div class="ui small feed">
+  //         <div class="event">
+  //           <div class="content">
+  //             <div class="summary">
+  //               <p>Wave Height: ${waveHeight} ft.</p>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div class="event">
+  //           <div class="content">
+  //             <div class="summary">
+  //               <p>Water Temp: ${waterTemp} degrees</p>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <h4 class="ui sub header">Restaurant Recommendation</h4>
+  //         <div class="event">
+  //           <div class="content">
+  //             <div class="summary">
+  //               <p>name: ${restaurant_info[num].restaurant_name}</p>
+  //               <p>phone: ${restaurant_info[num].restaurant_phone}</p>
+  //             </div>
+  //           </div>
+  //         </div>
+
+  //       </div>
+  //     </div>
+
+
+  //     <div class="extra content vote-area">
+  //       <button class="positive ui button go-btn">Go!</button>
+  //     </div>
+
+
+
+  //     `
+  // document.getElementById('sessions-display').append(sessionElement)
 
 }
 
@@ -431,7 +543,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=735e9610f4dd49119be162921212708&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
@@ -449,7 +561,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
   }
   else if (userCounty === 'orangeCounty') {
     beaches.orangeCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=735e9610f4dd49119be162921212708&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
