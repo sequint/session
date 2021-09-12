@@ -543,7 +543,7 @@ const findWaves = (lat, long, county, wavePrefLow, wavePrefHigh, tempPrefLow, te
 
   if (userCounty === 'sanDiegoCounty') {
     beaches.sanDiegoCounty.forEach(beach => {
-      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=735e9610f4dd49119be162921212708&format=json&q=${beach.latitude},${beach.longitude}`)
+      axios.get(`http://api.worldweatheronline.com/premium/v1/marine.ashx?key=500045134f354b9590e131348212008&format=json&q=${beach.latitude},${beach.longitude}`)
         .then(res => {
           let location = beach.name
           let waveHeight = res.data.data.weather[0].hourly[0].swellHeight_ft
